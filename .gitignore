@@ -1,1 +1,3 @@
 .svn
+*.pkg.tar.xz
+*.src.tar.gz
