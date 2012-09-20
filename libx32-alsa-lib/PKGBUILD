@@ -2,14 +2,14 @@
 # Maintainer: Jan "heftig" Steffens <jan.steffens@gmail.com>
 
 _pkgbasename=alsa-lib
-pkgname=lib32-${_pkgbasename}
+pkgname=libx32-${_pkgbasename}
 pkgver=1.0.26
-pkgrel=1
-pkgdesc="An alternative implementation of Linux sound support (32 bit)"
+pkgrel=1.1
+pkgdesc="An alternative implementation of Linux sound support (x32 ABI)"
 arch=('x86_64')
 url="http://www.alsa-project.org"
-depends=('lib32-glibc' $_pkgbasename)
-makedepends=('gcc-multilib')
+depends=('libx32-glibc' $_pkgbasename)
+makedepends=('gcc-multilib-x32')
 license=('GPL')
 options=(!libtool)
 source=(ftp://ftp.alsa-project.org/pub/lib/${_pkgbasename}-$pkgver.tar.bz2)
@@ -17,9 +17,9 @@ md5sums=('2dfa35d28471d721e592b616beedf965')
 
 build() {
   cd $srcdir/${_pkgbasename}-$pkgver
-  export CC='gcc -m32'
-  export PKG_CONFIG_PATH=/usr/lib32/pkgconfig
-  ./configure --prefix=/usr --libdir=/usr/lib32 --disable-python
+  export CC='gcc -mx32'
+  export PKG_CONFIG_PATH=/usr/libx32/pkgconfig
+  ./configure --prefix=/usr --libdir=/usr/libx32 --disable-python
   make
 }
 
@@ -27,6 +27,6 @@ package() {
   cd $srcdir/${_pkgbasename}-$pkgver
   make DESTDIR=$pkgdir install
 
-  # Clean up lib32 package
+  # Clean up libx32 package
   rm -rf "${pkgdir}"/usr/{bin,include,share}
 }
