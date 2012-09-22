@@ -3,15 +3,15 @@
 # Contributor: Alexander Baldeck <alexander@archlinux.org>
 
 _pkgbasename=libpciaccess
-pkgname=lib32-${_pkgbasename}
+pkgname=libx32-${_pkgbasename}
 pkgver=0.13.1
-pkgrel=1
-pkgdesc="X11 PCI access library (32-bit"
-arch=(i686 x86_64)
+pkgrel=1.1
+pkgdesc="X11 PCI access library (x32 ABI)"
+arch=(x86_64)
 license=('custom')
 url="http://xorg.freedesktop.org/"
-depends=('lib32-glibc' ${_pkgbasename})
-makedepends=('gcc-multilib' 'pkgconfig' 'xorg-util-macros')
+depends=('libx32-glibc' ${_pkgbasename})
+makedepends=('gcc-multilib-x32' 'pkgconfig' 'xorg-util-macros')
 options=('!libtool')
 source=(${url}/releases/individual/lib/${_pkgbasename}-${pkgver}.tar.bz2)
 sha1sums=('ae4dcf27a1b52c6a1fd90b21165fbaecae34e8ac')
@@ -19,12 +19,12 @@ sha1sums=('ae4dcf27a1b52c6a1fd90b21165fbaecae34e8ac')
 build() {
   cd "${srcdir}/${_pkgbasename}-${pkgver}"
 
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   ./configure --prefix=/usr --sysconfdir=/etc \
-    --libdir=/usr/lib32
+    --libdir=/usr/libx32
   make
 }
 
