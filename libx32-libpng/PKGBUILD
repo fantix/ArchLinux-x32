@@ -5,16 +5,16 @@
 # Contributor: Douglas Soares de Andrade <douglas@archlinux.org>
 
 _pkgbasename=libpng
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=1.5.12
 _apngver=1.5.12
 _libversion=15
-pkgrel=1
-pkgdesc="A collection of routines used to create PNG format graphics files (32-bit)"
+pkgrel=1.1
+pkgdesc="A collection of routines used to create PNG format graphics files (x32 ABI)"
 arch=('x86_64')
 url="http://www.libpng.org/pub/png/libpng.html"
 license=('custom')
-depends=('lib32-zlib' $_pkgbasename)
+depends=('libx32-zlib' $_pkgbasename)
 makedepends=(gcc-multilib)
 options=('!libtool')
 source=("http://downloads.sourceforge.net/sourceforge/${_pkgbasename}/${_pkgbasename}-${pkgver}.tar.xz"
@@ -23,9 +23,9 @@ md5sums=('0fd51add1da6a0e470e0c726c59171b9'
          '7f2924b1fe0cca9080e18b8720443716')
 
 build() {
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   cd "${srcdir}/${_pkgbasename}-${pkgver}"
 
@@ -33,7 +33,7 @@ build() {
   # see http://sourceforge.net/projects/libpng-apng/
   patch -p1 -i "${srcdir}/libpng-${_apngver}-apng.patch"
 
-  ./configure --prefix=/usr --libdir=/usr/lib32 --program-suffix=-32
+  ./configure --prefix=/usr --libdir=/usr/libx32 --program-suffix=-x32
   make
 }
 
@@ -43,12 +43,12 @@ package() {
   make DESTDIR="${pkgdir}" install
 
   cd contrib/pngminus
-  make PNGLIB="-L${pkgdir}/usr/lib32 -lpng" -f makefile.std png2pnm pnm2png
+  make PNGLIB="-L${pkgdir}/usr/libx32 -lpng" -f makefile.std png2pnm pnm2png
 
   rm -rf "${pkgdir}"/usr/{include,share}
 
   rm "$pkgdir/usr/bin/libpng-config"
-  ln -s "libpng${_libversion}-config-32" "$pkgdir/usr/bin/libpng-config-32"
+  ln -s "libpng${_libversion}-config-x32" "$pkgdir/usr/bin/libpng-config-x32"
 
   mkdir -p "$pkgdir/usr/share/licenses"
   ln -s $_pkgbasename "$pkgdir/usr/share/licenses/$pkgname"
