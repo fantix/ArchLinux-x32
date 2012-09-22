@@ -1,26 +1,34 @@
 # $Id: PKGBUILD 69957 2012-04-27 07:19:51Z lcarlier $
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
-pkgname=lib32-libffi
+pkgname=libx32-libffi
 pkgver=3.0.11
-pkgrel=1
-pkgdesc="A portable, high level programming interface to various calling conventions (32 bits version)"
+pkgrel=1.1
+pkgdesc="A portable, high level programming interface to various calling conventions (x32 ABI version)"
 arch=('x86_64')
 license=('MIT')
 url="http://sourceware.org/libffi"
-depends=('lib32-glibc')
+depends=('libx32-glibc')
 checkdepends=('dejagnu')
 options=('!libtool')
-source=(ftp://sourceware.org/pub/libffi/libffi-${pkgver}.tar.gz)
-md5sums=('f69b9693227d976835b4857b1ba7d0e3')
+source=(
+ftp://sourceware.org/pub/libffi/libffi-${pkgver}.tar.gz
+189626.patch
+)
+md5sums=(
+'f69b9693227d976835b4857b1ba7d0e3'
+'e01126c78cefe99498ff1e04fa728a2b'
+)
 
 build() {
   cd "${srcdir}/libffi-${pkgver}"
 
-  export CC="gcc -m32"
+  patch -p2 -i ${srcdir}/189626.patch
+
+  export CC="gcc -mx32"
 
   ./configure --prefix=/usr \
-    --libdir=/usr/lib32 --libexecdir=/usr/lib32
+    --libdir=/usr/libx32 --libexecdir=/usr/libx32
 
   make
 }
