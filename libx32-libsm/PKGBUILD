@@ -2,15 +2,15 @@
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libsm
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=1.2.1
-pkgrel=1
-pkgdesc="X11 Session Management library (32-bit)"
+pkgrel=1.1
+pkgdesc="X11 Session Management library (x32 ABI)"
 arch=('x86_64')
 license=('custom')
 url="http://xorg.freedesktop.org/"
-depends=('lib32-libice' 'lib32-util-linux' $_pkgbasename)
-makedepends=('xorg-util-macros' 'xtrans' 'gcc-multilib')
+depends=('libx32-libice' 'libx32-util-linux' $_pkgbasename)
+makedepends=('xorg-util-macros' 'xtrans' 'gcc-multilib-x32')
 options=('!libtool')
 source=(${url}/releases/individual/lib/libSM-${pkgver}.tar.bz2)
 sha1sums=('8d354a165e330022ffd3606aba562b8c8154213d')
@@ -18,10 +18,10 @@ sha1sums=('8d354a165e330022ffd3606aba562b8c8154213d')
 build() {
   cd "${srcdir}/libSM-${pkgver}"
 
-  export CC="gcc -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
-  ./configure --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib32
+  ./configure --prefix=/usr --sysconfdir=/etc --libdir=/usr/libx32
   make
 }
 
