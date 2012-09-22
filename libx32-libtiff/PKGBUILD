@@ -3,26 +3,26 @@
 # Contributor: dorphell <dorphell@archlinux.org>
 
 _pkgbasename=libtiff
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=4.0.2
-pkgrel=1
-pkgdesc="Library for manipulation of TIFF images (32-bit)"
+pkgrel=1.1
+pkgdesc="Library for manipulation of TIFF images (x32 ABI)"
 arch=('x86_64')
 url="http://www.remotesensing.org/libtiff/"
 license=('custom')
-depends=('lib32-libjpeg' 'lib32-zlib' $_pkgbasename)
-makedepends=(gcc-multilib)
+depends=('libx32-libjpeg' 'libx32-zlib' $_pkgbasename)
+makedepends=(gcc-multilib-x32)
 options=('!libtool')
 source=(ftp://ftp.remotesensing.org/pub/libtiff/tiff-${pkgver}.tar.gz)
 sha1sums=('d84b7b33a6cfb3d15ca386c8c16b05047f8b5352')
 
 build() {
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   cd "${srcdir}/tiff-${pkgver}"
-  ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --libdir=/usr/lib32
+  ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --libdir=/usr/libx32
   make
 }
 
