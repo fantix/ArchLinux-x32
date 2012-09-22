@@ -6,29 +6,29 @@
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 
 _pkgbasename=libasyncns
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=0.8
-pkgrel=6
-pkgdesc="A C library for Linux/Unix for executing name service queries asynchronously (32-bit)"
+pkgrel=6.1
+pkgdesc="A C library for Linux/Unix for executing name service queries asynchronously (x32 ABI)"
 arch=(x86_64)
 url="http://0pointer.de/lennart/projects/libasyncns"
 license=('LGPL')
 options=('!libtool')
-depends=('lib32-glibc' $_pkgbasename)
-makedepends=('gcc-multilib')
+depends=('libx32-glibc' $_pkgbasename)
+makedepends=('gcc-multilib-x32')
 source=(http://0pointer.de/lennart/projects/libasyncns/${_pkgbasename}-${pkgver}.tar.gz)
 md5sums=('1f553d6ce1ad255bc83b3d8e9384f515')
 
 build() {
   cd ${srcdir}/libasyncns-${pkgver}
 
-  export CC="gcc -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   # Fix libdir
-  sed -i '/^libdir=/s:/lib:/lib32:' *.pc.in
+  sed -i '/^libdir=/s:/lib:/libx32:' *.pc.in
 
-  ./configure --prefix=/usr --disable-lynx --libdir=/usr/lib32
+  ./configure --prefix=/usr --disable-lynx --libdir=/usr/libx32
   make
 }
 
