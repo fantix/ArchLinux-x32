@@ -3,14 +3,14 @@
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libice
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=1.0.8
-pkgrel=1
-pkgdesc="X11 Inter-Client Exchange library (32-bit)"
+pkgrel=1.1
+pkgdesc="X11 Inter-Client Exchange library (x32 ABI)"
 arch=(x86_64)
 url="http://xorg.freedesktop.org/"
-depends=('lib32-glibc' $_pkgbasename)
-makedepends=('pkgconfig' 'xtrans>=1.2.5' 'gcc-multilib')
+depends=('libx32-glibc' $_pkgbasename)
+makedepends=('pkgconfig' 'xtrans>=1.2.5' 'gcc-multilib-x32')
 options=('!libtool')
 source=(${url}/releases/individual/lib/libICE-${pkgver}.tar.bz2)
 license=('custom')
@@ -19,10 +19,10 @@ sha1sums=('ddb14df8bbc43df7322978f5f9f802936e2a7324')
 build() {
   cd "${srcdir}/libICE-${pkgver}"
 
-  export CC="gcc -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
-  ./configure --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib32
+  ./configure --prefix=/usr --sysconfdir=/etc --libdir=/usr/libx32
 
   make
 }
