@@ -3,15 +3,15 @@
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=freetype2
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=2.4.10
-pkgrel=1
-pkgdesc="TrueType font rendering library (32-bit)"
+pkgrel=1.1
+pkgdesc="TrueType font rendering library (x32 ABI)"
 arch=(x86_64)
 license=('GPL')
 url="http://freetype.sourceforge.net"
-depends=('lib32-zlib' 'lib32-bzip2' $_pkgbasename)
-makedepends=(gcc-multilib)
+depends=('libx32-zlib' 'libx32-bzip2' $_pkgbasename)
+makedepends=(gcc-multilib-x32)
 options=('!libtool')
 source=(http://downloads.sourceforge.net/sourceforge/freetype/freetype-${pkgver}.tar.bz2
         freetype-2.3.0-enable-spr.patch
@@ -21,15 +21,15 @@ md5sums=('13286702e9390a91661f980608adaff1'
          '214119610444c9b02766ccee5e220680')
 
 build() {
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   cd "${srcdir}/freetype-${pkgver}"
   patch -Np1 -i "${srcdir}/freetype-2.3.0-enable-spr.patch"
   patch -Np1 -i "${srcdir}/freetype-2.2.1-enable-valid.patch"
 
-  ./configure --prefix=/usr --libdir=/usr/lib32
+  ./configure --prefix=/usr --libdir=/usr/libx32
   make
 }
 
