@@ -36,12 +36,17 @@ diff -ru libmikmod-3.1.12.orig/include/mikmod.h.in libmikmod-3.1.12/include/mikm
 diff -ru libmikmod-3.1.12.orig/include/mikmod_internals.h libmikmod-3.1.12/include/mikmod_internals.h
 --- libmikmod-3.1.12.orig/include/mikmod_internals.h	2007-12-15 04:24:51.000000000 -0800
 +++ libmikmod-3.1.12/include/mikmod_internals.h	2009-10-05 00:19:15.000000000 -0700
-@@ -50,7 +50,7 @@
+@@ -50,8 +50,12 @@
  /*========== More type definitions */
  
  /* SLONGLONG: 64bit, signed */
 -#if defined (__arch64__) || defined(__alpha)
 +#if defined(__arch64__) || defined(__alpha) || defined(__x86_64) || defined(_LP64)
++#if defined(_ILP32)
++typedef long long  SLONGLONG;
++#else
  typedef long		SLONGLONG;
++#endif
  #define NATIVE_64BIT_INT
  #elif defined(__WATCOMC__)
+ typedef __int64		SLONGLONG;
