@@ -2,23 +2,23 @@
 # Maintainer: Andreas Radke <andyrtr@archlinux.org>
 
 _pkgbasename=libcups
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=1.6.1
-pkgrel=1
-pkgdesc="The CUPS Printing System - client libraries (32-bit)"
+pkgrel=1.1
+pkgdesc="The CUPS Printing System - client libraries (x32 ABI)"
 arch=('x86_64')
 license=('GPL')
 url="http://www.cups.org/"
-depends=(lib32-krb5 lib32-libtiff lib32-libpng $_pkgbasename)
-makedepends=(gcc-multilib)
+depends=(libx32-krb5 libx32-libtiff libx32-libpng $_pkgbasename)
+makedepends=(gcc-multilib-x32)
 source=(ftp://ftp.easysw.com/pub/cups/${pkgver}/cups-${pkgver}-source.tar.bz2 fix-libusb-configure.patch)
 md5sums=('87ade07e3d1efd03c9c3add949cf9c00'
          '9cf39a66f21d1208a585367b25cf117b')
 
 build() {
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   cd ${srcdir}/cups-${pkgver}
 
@@ -31,7 +31,7 @@ build() {
      --disable-ldap --enable-raw-printing --disable-gssapi --disable-dbus \
      --enable-ssl=no --disable-gnutls --enable-threads --enable-libusb=no \
 	 --disable-avahi \
-     --with-optim="$CFLAGS" --libdir=/usr/lib32
+     --with-optim="$CFLAGS" --libdir=/usr/libx32
   make
 }
 
