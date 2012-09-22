@@ -1,0 +1,33 @@
+# $Id: PKGBUILD 68878 2012-04-04 16:55:37Z bluewind $
+
+_pkgbasename=expat
+pkgname=lib32-${_pkgbasename}
+pkgver=2.1.0
+pkgrel=1
+pkgdesc="An XML Parser library written in C (32 bit)"
+arch=('x86_64')
+url="http://expat.sourceforge.net/"
+license=('custom')
+makedepends=('gcc-multilib')
+depends=('lib32-glibc' "${_pkgbasename}")
+options=('!libtool')
+source=(http://downloads.sourceforge.net/sourceforge/expat/${_pkgbasename}-${pkgver}.tar.gz)
+md5sums=('dd7dab7a5fea97d2a6a43f511449b7cd')
+
+build() {
+  cd "${srcdir}/${_pkgbasename}-${pkgver}"
+  export CC='gcc -m32'
+  export PKG_CONFIG_PATH=/usr/lib32/pkgconfig
+  ./configure --prefix=/usr --libdir=/usr/lib32 --mandir=/usr/share/man 
+  make
+}
+
+package() {
+  cd "${srcdir}/${_pkgbasename}-${pkgver}"
+  make DESTDIR="${pkgdir}" install
+  install -d -m755 "${pkgdir}/usr/share/licenses/"
+  ln -s ${_pkgbasename} "${pkgdir}/usr/share/licenses/${pkgname}"
+
+  # Clean up lib32 package
+  rm -rf "${pkgdir}"/usr/{bin,include,share/man}
+}
