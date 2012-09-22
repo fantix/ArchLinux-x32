@@ -1,0 +1,40 @@
+# Maintainer: Florian Pritz <flo@xssn.at>
+# $Id: PKGBUILD 71573 2012-05-29 20:53:52Z bluewind $
+# Contributor: Angel Velasquez <angvp@archlinux.org> 
+# Contributor: Sergej Pupykin <pupykin.s+arch@gmail.com>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
+# Contributor: ice-man <icemanf@gmail.com>
+
+_pkgbasename=libssh2
+pkgname=lib32-$_pkgbasename
+pkgver=1.4.2
+pkgrel=1
+pkgdesc="A library implementing the SSH2 protocol as defined by Internet Drafts (32-bit)"
+url="http://www.libssh2.org/"
+arch=('i686' 'x86_64')
+license=('BSD')
+depends=('lib32-openssl' $_pkgbasename)
+provides=('libssh2.so')
+makedepends=('zlib' "gcc-multilib")
+options=('!libtool')
+source=("http://www.libssh2.org/download/${_pkgbasename}-${pkgver}.tar.gz")
+md5sums=('42e2b3796ac07fc1dbafc7abcc002cd3')
+
+build() {
+  export CC="gcc -m32"
+  export CXX="g++ -m32"
+  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+  cd ${srcdir}/${_pkgbasename}-${pkgver}
+  ./configure --prefix=/usr --libdir=/usr/lib32
+  make
+}
+
+package() {
+  cd ${srcdir}/${_pkgbasename}-${pkgver}
+  make DESTDIR=${pkgdir} install
+
+  rm -rf "${pkgdir}"/usr/{include,share,bin,sbin}
+  mkdir -p "$pkgdir/usr/share/licenses"
+  ln -s $_pkgbasename "$pkgdir/usr/share/licenses/$pkgname"
+}
