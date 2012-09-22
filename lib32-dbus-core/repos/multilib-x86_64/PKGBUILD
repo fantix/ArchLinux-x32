@@ -1,0 +1,45 @@
+# $Id: PKGBUILD 74441 2012-07-28 15:06:04Z bluewind $
+# Maintainer : Ionut Biru <ibiru@archlinux.org>
+
+pkgname=lib32-dbus-core
+_pkgbasename=dbus-core
+pkgver=1.6.4
+pkgrel=1
+pkgdesc="Freedesktop.org message bus system (32-bit)"
+arch=('x86_64')
+url="http://www.freedesktop.org/Software/dbus"
+license=('GPL' 'custom')
+depends=('lib32-glibc' 'lib32-expat' 'dbus-core')
+makedepends=('gcc-multilib' lib32-libx11)
+options=(!libtool)
+source=(http://dbus.freedesktop.org/releases/dbus/dbus-${pkgver}.tar.gz)
+md5sums=('5ec43dc4554cba638917317b2b4f7640')
+
+build() {
+    export CC="gcc -m32"
+    export CXX="g++ -m32"
+    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+    cd "${srcdir}/dbus-${pkgver}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib32 \
+        --libexecdir=/usr/lib/dbus-1.0 --with-dbus-user=81 \
+        --with-system-pid-file=/var/run/dbus.pid \
+        --enable-inotify --disable-dnotify \
+        --disable-verbose-mode --disable-static \
+        --disable-tests --disable-asserts --disable-systemd \
+		--with-console-auth-dir=/run/console/
+
+    make
+}
+
+package() {
+    cd "${srcdir}/dbus-${pkgver}"
+    make DESTDIR=${pkgdir} install
+
+    rm -rf "${pkgdir}"/usr/{bin,include,lib,share}
+    rm -rf "${pkgdir}"/{etc,var}
+
+    mkdir -p "${pkgdir}/usr/share/licenses"
+    ln -s ${_pkgbasename} "${pkgdir}/usr/share/licenses/${pkgname}"
+}
