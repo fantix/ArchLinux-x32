@@ -2,15 +2,15 @@
 # Maintainer: Jan "heftig" Steffens <jan.steffens@gmail.com>
 
 _pkgbasename=libsndfile
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=1.0.25
-pkgrel=2
-pkgdesc="A C library for reading and writing files containing sampled sound (32-bit)"
+pkgrel=2.1
+pkgdesc="A C library for reading and writing files containing sampled sound (x32 ABI)"
 arch=('x86_64')
 url="http://www.mega-nerd.com/libsndfile"
 license=('LGPL')
-depends=('lib32-flac' 'lib32-libvorbis' $_pkgbasename)
-makedepends=('lib32-alsa-lib' 'gcc-multilib')
+depends=('libx32-flac' 'libx32-libvorbis' $_pkgbasename)
+makedepends=('libx32-alsa-lib' 'gcc-multilib-x32')
 options=('!libtool')
 source=(http://www.mega-nerd.com/libsndfile/files/${_pkgbasename}-${pkgver}.tar.gz)
 md5sums=('e2b7bb637e01022c7d20f95f9c3990a2')
@@ -19,14 +19,14 @@ sha1sums=('e95d9fca57f7ddace9f197071cbcfb92fa16748e')
 build() {
   cd "${srcdir}/${_pkgbasename}-${pkgver}"
 
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   export GETCONF="getconf -v POSIX_V7_ILP32_OFFBIG"
-  export GETCONF_DIR="/usr/lib32/getconf"
+  export GETCONF_DIR="/usr/libx32/getconf"
 
-  ./configure --prefix=/usr --disable-sqlite --libdir=/usr/lib32
+  ./configure --prefix=/usr --disable-sqlite --libdir=/usr/libx32
   make -C src
 }
 
