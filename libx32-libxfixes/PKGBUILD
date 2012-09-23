@@ -2,26 +2,26 @@
 #Maintainer: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libxfixes
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=5.0
-pkgrel=1
-pkgdesc="X11 miscellaneous 'fixes' extension library (32-bit)"
+pkgrel=1.1
+pkgdesc="X11 miscellaneous 'fixes' extension library (x32 ABI)"
 arch=('x86_64')
 url="http://xorg.freedesktop.org/"
 license=('custom')
-depends=('lib32-libx11' $_pkgbasename)
-makedepends=('pkg-config' gcc-multilib )
+depends=('libx32-libx11' $_pkgbasename)
+makedepends=('pkg-config' gcc-multilib-x32 )
 options=('!libtool')
 source=(${url}/releases/individual/lib/libXfixes-${pkgver}.tar.bz2)
 sha1sums=('3e4d374e9026111a04cd669d4b3434273fc34fe0')
 
 build() {
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   cd "${srcdir}/libXfixes-${pkgver}"
-  ./configure --prefix=/usr --sysconfdir=/etc --disable-static --libdir=/usr/lib32
+  ./configure --prefix=/usr --sysconfdir=/etc --disable-static --libdir=/usr/libx32
   make
 }
 
