@@ -2,14 +2,14 @@
 # Maintainer: Alexander Baldeck <alexander@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 _pkgbasename=libxau
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=1.0.7
-pkgrel=1
-pkgdesc="X11 authorisation library (32-bit)"
+pkgrel=1.1
+pkgdesc="X11 authorisation library (x32 ABI)"
 arch=(x86_64)
 url="http://xorg.freedesktop.org/"
-depends=('lib32-glibc' $_pkgbasename)
-makedepends=('pkgconfig' 'xproto>=7.0.15' 'gcc-multilib')
+depends=('libx32-glibc' $_pkgbasename)
+makedepends=('pkgconfig' 'xproto>=7.0.15' 'gcc-multilib-x32')
 license=('custom')
 options=('!libtool')
 source=(${url}/releases/individual/lib/libXau-${pkgver}.tar.bz2)
@@ -18,10 +18,10 @@ sha1sums=('29c47207fd246425b906f525b2220235ce4cd0f6')
 build() {
   cd "${srcdir}/libXau-${pkgver}"
 
-  export CC="gcc -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
-  ./configure --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib32
+  ./configure --prefix=/usr --sysconfdir=/etc --libdir=/usr/libx32
   make
 }
 
