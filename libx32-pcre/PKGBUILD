@@ -2,15 +2,15 @@
 # Maintainer: Ionut Biru <ibiru@archlinux.org>
 
 _pkgbasename=pcre
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=8.31
-pkgrel=1
-pkgdesc="A library that implements Perl 5-style regular expressions (32-bit)"
+pkgrel=1.1
+pkgdesc="A library that implements Perl 5-style regular expressions (x32 ABI)"
 arch=('x86_64')
 url="http://pcre.sourceforge.net"
 license=('custom')
-depends=('lib32-gcc-libs' $_pkgbasename)
-makedepends=('gcc-multilib')
+depends=('libx32-gcc-libs' $_pkgbasename)
+makedepends=('gcc-multilib-x32')
 options=('!libtool')
 source=(ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/${_pkgbasename}-${pkgver}.tar.bz2{,.sig})
 md5sums=('1c9a276af932b5599157f96e945391f0'
@@ -18,11 +18,11 @@ md5sums=('1c9a276af932b5599157f96e945391f0'
 
 build() {
   cd "${srcdir}"/${_pkgbasename}-${pkgver}
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
-  ./configure --prefix=/usr --libdir=/usr/lib32 \
+  ./configure --prefix=/usr --libdir=/usr/libx32 \
     --enable-utf8 --enable-unicode-properties --enable-pcre16 --enable-jit
   make
 }
