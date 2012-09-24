@@ -1,0 +1,42 @@
+# $Id: PKGBUILD 71890 2012-06-02 22:15:54Z lcarlier $
+# Maintainer: Jan de Groot <jgc@archlinux.org>
+
+_pkgbasename=libx11
+pkgname=lib32-$_pkgbasename
+pkgver=1.5.0
+pkgrel=1
+pkgdesc="X11 client-side library (32-bit)"
+arch=(x86_64)
+url="http://xorg.freedesktop.org/"
+depends=('lib32-libxcb' $_pkgbasename)
+makedepends=('xorg-util-macros' 'xextproto' 'xtrans' 'inputproto' 'gcc-multilib')
+options=('!libtool')
+license=('custom:XFREE86')
+source=(${url}/releases/individual/lib/libX11-${pkgver}.tar.bz2)
+sha256sums=('c382efd7e92bfc3cef39a4b7f1ecf2744ba4414a705e3bc1e697f75502bd4d86')
+
+build() {
+  export CC="gcc -m32"
+  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+  cd "${srcdir}/libX11-${pkgver}"
+  ./configure --prefix=/usr --disable-static --disable-xf86bigfont \
+      --libdir=/usr/lib32 --disable-specs
+  make
+}
+
+check() {
+  cd "${srcdir}/libX11-${pkgver}"
+
+  make check
+}
+
+package() {
+  cd "${srcdir}/libX11-${pkgver}"
+  make DESTDIR="${pkgdir}" install
+
+  rm -rf "${pkgdir}"/usr/{include,share}
+
+  mkdir -p "$pkgdir/usr/share/licenses"
+  ln -s $_pkgbasename "$pkgdir/usr/share/licenses/$pkgname"
+}
