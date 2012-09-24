@@ -2,26 +2,26 @@
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libx11
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=1.5.0
-pkgrel=1
-pkgdesc="X11 client-side library (32-bit)"
+pkgrel=1.1
+pkgdesc="X11 client-side library (x32 ABI)"
 arch=(x86_64)
 url="http://xorg.freedesktop.org/"
-depends=('lib32-libxcb' $_pkgbasename)
-makedepends=('xorg-util-macros' 'xextproto' 'xtrans' 'inputproto' 'gcc-multilib')
+depends=('libx32-libxcb' $_pkgbasename)
+makedepends=('xorg-util-macros' 'xextproto' 'xtrans' 'inputproto' 'gcc-multilib-x32')
 options=('!libtool')
 license=('custom:XFREE86')
 source=(${url}/releases/individual/lib/libX11-${pkgver}.tar.bz2)
 sha256sums=('c382efd7e92bfc3cef39a4b7f1ecf2744ba4414a705e3bc1e697f75502bd4d86')
 
 build() {
-  export CC="gcc -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   cd "${srcdir}/libX11-${pkgver}"
   ./configure --prefix=/usr --disable-static --disable-xf86bigfont \
-      --libdir=/usr/lib32 --disable-specs
+      --libdir=/usr/libx32 --disable-specs
   make
 }
 
