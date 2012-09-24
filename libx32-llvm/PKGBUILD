@@ -9,34 +9,34 @@
 # Contributor: Roberto Alsina <ralsina@kde.org>
 # Contributor: Gerardo Exequiel Pozzi <vmlinuz386@yahoo.com.ar>
 
-pkgname=('lib32-llvm')
+pkgname=('libx32-llvm')
 pkgver=3.1
-pkgrel=2
+pkgrel=2.1
 arch=('x86_64')
 url="http://llvm.org/"
 license=('custom:University of Illinois/NCSA Open Source License')
-makedepends=('lib32-libffi' 'python2' 'gcc-multilib')
+makedepends=('libx32-libffi' 'python2-x32' 'gcc-multilib-x32')
 source=(http://llvm.org/releases/$pkgver/llvm-$pkgver.src.tar.gz)
 sha256sums=('1ea05135197b5400c1f88d00ff280d775ce778f8f9ea042e25a1e1e734a4b9ab')
 
 build() {
   cd "$srcdir/llvm-$pkgver.src"
 
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   rm -rf tools/clang
   rm -rf projects/compiler-rt
 
   # Fix installation directories, ./configure doesn't seem to set them right
   sed -i -e 's:\$(PROJ_prefix)/etc/llvm:/etc/llvm:' \
-         -e 's:\$(PROJ_prefix)/lib:$(PROJ_prefix)/lib32/llvm:' \
+         -e 's:\$(PROJ_prefix)/lib:$(PROJ_prefix)/libx32/llvm:' \
          -e 's:\$(PROJ_prefix)/docs/llvm:$(PROJ_prefix)/share/doc/llvm:' \
     Makefile.config.in
-  sed -i '/ActiveLibDir = ActivePrefix/s:lib:lib32/llvm:' \
+  sed -i '/ActiveLibDir = ActivePrefix/s:lib:libx32/llvm:' \
     tools/llvm-config/llvm-config.cpp
-  sed -i 's:LLVM_LIBDIR="${prefix}/lib":LLVM_LIBDIR="${prefix}/lib32/llvm":' \
+  sed -i 's:LLVM_LIBDIR="${prefix}/lib":LLVM_LIBDIR="${prefix}/libx32/llvm":' \
     autoconf/configure.ac \
     configure
 
@@ -52,7 +52,7 @@ build() {
 
   # Use Python 2
   mkdir "$srcdir/python2-path"
-  ln -s /usr/bin/python2 "$srcdir/python2-path/python"
+  ln -s /opt/python2-x32/bin/python2.7 "$srcdir/python2-path/python"
   export PATH="$srcdir/python2-path:$PATH"
 
   # We had to force host and target to get
@@ -60,7 +60,7 @@ build() {
 
   ./configure \
     --prefix=/usr \
-    --libdir=/usr/lib32/llvm \
+    --libdir=/usr/libx32/llvm \
     --sysconfdir=/etc \
     --enable-shared \
     --enable-libffi \
@@ -80,8 +80,8 @@ build() {
 }
 
 package() {
-  pkgdesc="Low Level Virtual Machine (32 bits version)"
-  depends=('lib32-libffi' 'llvm')
+  pkgdesc="Low Level Virtual Machine (x32 ABI version)"
+  depends=('libx32-libffi' 'llvm')
 
   cd "$srcdir/llvm-$pkgver.src"
 
@@ -92,28 +92,28 @@ package() {
   make -j1 DESTDIR="$pkgdir" install
 
   # Fix permissions of static libs
-  chmod -x "$pkgdir"/usr/lib32/llvm/*.a
+  chmod -x "$pkgdir"/usr/libx32/llvm/*.a
 
-  mv "$pkgdir/usr/bin/llvm-config" "$pkgdir/usr/lib32/llvm-config"
+  mv "$pkgdir/usr/bin/llvm-config" "$pkgdir/usr/libx32/llvm-config"
 
   # Get rid of example Hello transformation
-  rm "$pkgdir"/usr/lib32/llvm/*LLVMHello.*
+  rm "$pkgdir"/usr/libx32/llvm/*LLVMHello.*
 
   # Symlink the gold plugin where clang expects it
-  ln -s llvm/LLVMgold.so "$pkgdir/usr/lib32/LLVMgold.so"
+  ln -s llvm/LLVMgold.so "$pkgdir/usr/libx32/LLVMgold.so"
 
   # Add ld.so.conf.d entry
   install -d "$pkgdir/etc/ld.so.conf.d"
-  echo /usr/lib32/llvm >"$pkgdir/etc/ld.so.conf.d/llvm32.conf"
+  echo /usr/libx32/llvm >"$pkgdir/etc/ld.so.conf.d/llvmx32.conf"
 
   install -Dm644 LICENSE.TXT "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 
   mv "$pkgdir"/usr/include/llvm/Config/*config.h "$pkgdir/"
   rm -r "$pkgdir"/usr/{bin,include,share/{doc,man}}
   install -d "$pkgdir/usr/include/llvm/Config"
-  mv "$pkgdir/config.h" "$pkgdir/usr/include/llvm/Config/config-32.h"
-  mv "$pkgdir/llvm-config.h" "$pkgdir/usr/include/llvm/Config/llvm-config-32.h"
+  mv "$pkgdir/config.h" "$pkgdir/usr/include/llvm/Config/config-x32.h"
+  mv "$pkgdir/llvm-config.h" "$pkgdir/usr/include/llvm/Config/llvm-config-x32.h"
 
   mkdir "$pkgdir"/usr/bin
-  mv "$pkgdir/usr/lib32/llvm-config" "$pkgdir/usr/bin/llvm-config32"
+  mv "$pkgdir/usr/libx32/llvm-config" "$pkgdir/usr/bin/llvm-configx32"
 }
