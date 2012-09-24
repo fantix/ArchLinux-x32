@@ -2,15 +2,15 @@
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libxtst
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=1.2.1
-pkgrel=1
-pkgdesc="X11 Testing -- Resource extension library (32-bit)"
+pkgrel=1.1
+pkgdesc="X11 Testing -- Resource extension library (x32 ABI)"
 arch=(x86_64)
 url="http://xorg.freedesktop.org/"
 license=('custom')
-depends=('lib32-libxext' 'lib32-libxi' $_pkgbasename)
-makedepends=('gcc-multilib' 'xorg-util-macros')
+depends=('libx32-libxext' 'libx32-libxi' $_pkgbasename)
+makedepends=('gcc-multilib-x32' 'xorg-util-macros')
 options=('!libtool')
 source=(${url}/releases/individual/lib/libXtst-${pkgver}.tar.bz2)
 sha1sums=('44e19899f9938d3db5546e51c338d6f86d88cfe2')
@@ -18,11 +18,11 @@ sha1sums=('44e19899f9938d3db5546e51c338d6f86d88cfe2')
 build() {
   cd "${srcdir}/libXtst-${pkgver}"
 
-  export CC="gcc -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   ./configure --prefix=/usr --disable-static \
-    --libdir=/usr/lib32
+    --libdir=/usr/libx32
   make
 }
 
