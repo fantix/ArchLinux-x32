@@ -4,27 +4,27 @@
 # Contributor: Alexander Baldeck <alexander@archlinux.org>
 
 _pkgbasename=libxss
-pkgname=lib32-$_pkgbasename
+pkgname=libx32-$_pkgbasename
 pkgver=1.2.2
-pkgrel=1
-pkgdesc="X11 Screen Saver extension library (32-bit)"
+pkgrel=1.1
+pkgdesc="X11 Screen Saver extension library (x32 ABI)"
 arch=(x86_64)
 license=('custom')
 url="http://xorg.freedesktop.org/"
-depends=('lib32-libxext' $_pkgbasename)
-makedepends=('xorg-util-macros' gcc-multilib)
+depends=('libx32-libxext' $_pkgbasename)
+makedepends=('xorg-util-macros' gcc-multilib-x32)
 options=('!libtool')
 source=(${url}/releases/individual/lib/libXScrnSaver-${pkgver}.tar.bz2)
 sha1sums=('7b8298eec371c33a71232e3653370a98f03c6c88')
 
 build() {
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
+  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
   cd "${srcdir}/libXScrnSaver-${pkgver}"
   ./configure --prefix=/usr --sysconfdir=/etc \
-    --libdir=/usr/lib32
+    --libdir=/usr/libx32
   make
 }
 
