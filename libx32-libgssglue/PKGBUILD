@@ -1,25 +1,26 @@
 # Contributor: Tobias Powalowski <tpowa@archlinux.org>
-# Maintainer: josephgbr <rafael.f.f1@gmail.com>
+# Upstream Maintainer: josephgbr <rafael.f.f1@gmail.com>
+# Maintainer: Fantix King <fantixking at gmail.com>
 
 _pkgbase=libgssglue
-pkgname=lib32-${_pkgbase}
+pkgname=libx32-${_pkgbase}
 pkgver=0.4
-pkgrel=1
-pkgdesc="Exports a gssapi interface which calls other random gssapi libraries (lib32)"
+pkgrel=1.1
+pkgdesc="Exports a gssapi interface which calls other random gssapi libraries (x32 ABI)"
 arch=('x86_64')
 url="http://www.citi.umich.edu/projects/nfsv4/linux"
 license=('BSD')
-depends=('lib32-glibc' "${_pkgbase}")
-makedepends=('gcc-multilib')
+depends=('libx32-glibc' "${_pkgbase}")
+makedepends=('gcc-multilib-x32')
 options=('!libtool')
 source=($url/$_pkgbase/$_pkgbase-$pkgver.tar.gz)
 md5sums=('088797f3180702fa54e786496b32e750')
 
 build() {
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
+  export CC="gcc -mx32"
+  export CXX="g++ -mx32"
   cd $_pkgbase-$pkgver
-  ./configure --prefix=/usr --libdir=/usr/lib32
+  ./configure --prefix=/usr --libdir=/usr/libx32
   make
 }
 
