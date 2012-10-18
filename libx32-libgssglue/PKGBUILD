@@ -1,6 +1,6 @@
 # Contributor: Tobias Powalowski <tpowa@archlinux.org>
 # Upstream Maintainer: josephgbr <rafael.f.f1@gmail.com>
-# Maintainer: Fantix King <fantixking at gmail.com>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbase=libgssglue
 pkgname=libx32-${_pkgbase}
