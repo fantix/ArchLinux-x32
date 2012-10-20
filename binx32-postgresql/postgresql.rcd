@@ -5,9 +5,9 @@
 . /etc/conf.d/postgresql
 
 # Default PGROOT if it wasn't defined in the conf.d file
-PGROOT=${PGROOT:-/var/lib/postgres}
-PGLOG=${PGLOG:-/var/log/postgresql.log}
-PGCTL_BIN=/usr/bin/pg_ctl
+PGROOT=${PGROOT:-/var/lib/postgres-x32}
+PGLOG=${PGLOG:-/var/log/postgresql-x32.log}
+PGCTL_BIN=/usr/bin/pg_ctl-x32
 PGCTL_ARGS=(-D "$PGROOT/data" -l "$PGLOG" -s -w)
 [[ $PGOPTS ]] && PGCTL_ARGS+=(-o "$PGOPTS")
 
@@ -15,7 +15,7 @@ postgres_init() {
   # initialization
   if [[ ! -d "$PGROOT/data" ]]; then
     mkdir -p "$PGROOT/data" && chown -R postgres:postgres "$PGROOT"
-    su - postgres -c "/usr/bin/initdb $INITOPTS -D '$PGROOT/data'"
+    su - postgres -c "/usr/bin/initdb-x32 $INITOPTS -D '$PGROOT/data'"
   fi
   if [[ ! -e "$PGLOG" ]]; then
     touch "$PGLOG"

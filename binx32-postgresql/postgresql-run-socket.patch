@@ -6,7 +6,7 @@ diff -Naur postgresql-9.2.0.sockets/src/include/pg_config_manual.h postgresql-9.
   * with the postmaster's -k switch.
   */
 -#define DEFAULT_PGSOCKET_DIR  "/tmp"
-+#define DEFAULT_PGSOCKET_DIR  "/run/postgresql"
++#define DEFAULT_PGSOCKET_DIR  "/run/postgresql-x32"
  
  /*
   * The random() function is expected to yield values between 0 and

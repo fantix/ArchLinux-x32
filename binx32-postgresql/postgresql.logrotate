@@ -1,4 +1,4 @@
-/var/log/postgresql.log {
+/var/log/postgresql-x32.log {
    copytruncate
    missingok
 }
