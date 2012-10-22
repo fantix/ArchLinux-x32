@@ -1,19 +1,17 @@
-# $Id: PKGBUILD 168353 2012-10-09 06:41:47Z andrea $
+# $Id$
 # Maintainer: Andrea Scarpino <andrea@archlinux.org>
 # Contributor: Douglas Soares de Andrade <douglas@archlinux.org>
 
-_pkgbase=mysql
-pkgbase=binx32-mysql
-#pkgname=('libx32-libmysqlclient' 'binx32-mysql-clients' 'binx32-mysql')
-pkgname=('libx32-libmysqlclient')
+pkgbase=mysql
+pkgname=('libmysqlclient' 'mysql-clients' 'mysql')
 pkgver=5.5.28
-pkgrel=1.1
-arch=('x86_64')
+pkgrel=1
+arch=('i686' 'x86_64')
 license=('GPL')
 url="https://www.mysql.com/products/community/"
-makedepends=('cmake' 'libx32-openssl' 'libx32-zlib')
+makedepends=('cmake' 'openssl' 'zlib')
 options=('!libtool')
-source=("http://ftp.gwdg.de/pub/misc/mysql/Downloads/MySQL-5.5/${_pkgbase}-${pkgver}.tar.gz"
+source=("http://ftp.gwdg.de/pub/misc/mysql/Downloads/MySQL-5.5/${pkgbase}-${pkgver}.tar.gz"
         'mysqld.rc' 'my.cnf' 'mysqld-post.sh' 'mysqld-tmpfile.conf' 'mysqld.service')
 md5sums=('da8ddb3d00e6e159153d2444360f52a8'
          'e7eb2faeab755cbb2fe03542bf328da9'
@@ -28,7 +26,7 @@ build() {
 
   # CFLAGS/CXXFLAGS as suggested upstream
 
-  cmake ../${_pkgbase}-${pkgver} \
+  cmake ../${pkgbase}-${pkgver} \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DSYSCONFDIR=/etc/mysql \
@@ -37,7 +35,6 @@ build() {
     -DDEFAULT_CHARSET=utf8 \
     -DDEFAULT_COLLATION=utf8_general_ci \
     -DENABLED_LOCAL_INFILE=ON \
-    -DINSTALL_LIBDIR=libx32 \
     -DINSTALL_INFODIR=share/mysql/docs \
     -DINSTALL_MANDIR=share/man \
     -DINSTALL_PLUGINDIR=lib/mysql/plugin \
@@ -61,15 +58,15 @@ build() {
     -DWITHOUT_ARCHIVE_STORAGE_ENGINE=1 \
     -DWITHOUT_BLACKHOLE_STORAGE_ENGINE=1 \
     -DWITHOUT_FEDERATED_STORAGE_ENGINE=1 \
-    -DCMAKE_C_FLAGS="-mx32 -fPIC ${CFLAGS} -fno-strict-aliasing -DBIG_JOINS=1 -fomit-frame-pointer" \
-    -DCMAKE_CXX_FLAGS="-mx32 -fPIC ${CXXFLAGS} -fno-strict-aliasing -DBIG_JOINS=1 -felide-constructors -fno-rtti"
+    -DCMAKE_C_FLAGS="-fPIC ${CFLAGS} -fno-strict-aliasing -DBIG_JOINS=1 -fomit-frame-pointer" \
+    -DCMAKE_CXX_FLAGS="-fPIC ${CXXFLAGS} -fno-strict-aliasing -DBIG_JOINS=1 -felide-constructors -fno-rtti"
 
   make
 }
 
-package_libx32-libmysqlclient(){
-  pkgdesc="MySQL client libraries (x32 ABI)"
-  depends=(libmysqlclient=${pkgver} 'libx32-openssl')
+package_libmysqlclient(){
+  pkgdesc="MySQL client libraries"
+  depends=('openssl')
   
   cd build
   for dir in include libmysql libmysqld libservices; do
@@ -77,9 +74,11 @@ package_libx32-libmysqlclient(){
   done
 
   install -d "${pkgdir}"/usr/bin
-  install -m755 scripts/mysql_config "${pkgdir}"/usr/bin/mysql-x32_config
-
-  rm -rf "${pkgdir}/usr/include"
+  install -m755 scripts/mysql_config "${pkgdir}"/usr/bin/
+  install -d "${pkgdir}"/usr/share/man/man1
+  for man in mysql_config mysql_client_test_embedded mysqltest_embedded; do
+    install -m644 "${srcdir}"/${pkgbase}-${pkgver}/man/$man.1 "${pkgdir}"/usr/share/man/man1/$man.1
+  done
 }
 
 package_mysql-clients(){
@@ -92,7 +91,7 @@ package_mysql-clients(){
   # install man pages
   install -d "${pkgdir}"/usr/share/man/man1
   for man in mysql mysqladmin mysqlcheck mysqldump mysqlimport mysqlshow mysqlslap; do
-    install -m644 "${srcdir}"/${_pkgbase}-${pkgver}/man/$man.1 "${pkgdir}"/usr/share/man/man1/$man.1
+    install -m644 "${srcdir}"/${pkgbase}-${pkgver}/man/$man.1 "${pkgdir}"/usr/share/man/man1/$man.1
   done
 
   # provided by mysql
