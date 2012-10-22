@@ -1,0 +1,31 @@
+# $Id: PKGBUILD 75952 2012-09-06 20:32:44Z jlichtblau $
+# Maintainer: Jaroslav Lichtblau <dragonlord@aur.archlinux.org>
+# Contributor: dibblethewrecker dibblethewrecker.at.jiwe.dot.org
+# Contributor: William Rea <sillywilly@gmail.com>
+# Contributor: Alexander Rødseth <rodseth@gmail.com>
+
+pkgname=geos
+pkgver=3.3.5
+pkgrel=1
+pkgdesc="C++ port of the Java Topology Suite"
+arch=('x86_64' 'i686')
+url="http://trac.osgeo.org/geos/"
+license=('LGPL')
+depends=('gcc-libs' 'bash')
+options=('!libtool' '!emptydirs')
+changelog=$pkgname.changelog
+source=(http://download.osgeo.org/$pkgname/$pkgname-$pkgver.tar.bz2)
+sha256sums=('3b513fbe2d155364d61e76d9c250d6d8e75b5166783a233596c744373cb5874f')
+
+build() {
+  cd ${srcdir}/$pkgname-$pkgver
+
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd ${srcdir}/$pkgname-$pkgver
+
+  make DESTDIR=${pkgdir} install
+}
