@@ -145,4 +145,4 @@ static: $(ALLOBJ)
 	ranlib libblas.a
 
 shared: $(ALLOBJ)
-	cc $(CFLAGS) -shared -Wl,-soname,libblas.so.3 -o libblas.so.3.3.0 $(ALLOBJ) -lm -lgfortran -lc
+	cc -mx32 $(CFLAGS) -shared -Wl,-soname,libblas.so.3 -o libblas.so.3.3.0 $(ALLOBJ) -lm -lgfortran -lc
