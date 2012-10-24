@@ -31,9 +31,10 @@
 @@ -34,9 +34,9 @@
  # Define these as empty strings, if you don't have the respective config program
  #ALLEGRO_CONFIG = allegro-config
- #PNG_CONFIG     = pkg-config libpng
+-#PNG_CONFIG     = pkg-config libpng
 -#SDL_CONFIG     = sdl-config
-+SDL_CONFIG     = sdl-config
++#PNG_CONFIG     = libpng-config-x32
++SDL_CONFIG     = sdl-config-x32
  
 -#VERBOSE = 1
 +VERBOSE = 1
