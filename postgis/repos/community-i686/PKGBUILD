@@ -1,0 +1,36 @@
+# $Id: PKGBUILD 76606 2012-09-24 15:07:54Z dan $
+# Maintainer: Jaroslav Lichtblau <dragonlord@aur.archlinux.org>
+# Contributor: dibblethewrecker dibblethewrecker.at.jiwe.dot.org
+# Contributor: William Rea <sillywilly@gmail.com>
+
+pkgname=postgis
+pkgver=2.0.1
+pkgrel=1
+pkgdesc="Adds support for geographic objects to PostgreSQL"
+arch=('i686' 'x86_64')
+url="http://postgis.org/"
+license=('GPL')
+depends=('postgresql>=9.2' 'postgresql<9.3' 'proj' 'geos' 'gdal' 'json-c' 'libxml2')
+changelog=$pkgname.changelog
+options=('!libtool')
+source=("http://postgis.org/download/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('32d181bbf0e648fe31c95b3dd23f7e4e49094d93cb4278fdf71c8feed4e9593c')
+
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  ./configure --prefix=/usr
+  make
+
+  # Build utils (FS#25836)
+  cd utils
+  make
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  make DESTDIR="${pkgdir}" install
+
+  cd utils
+  make DESTDIR="${pkgdir}" install
+}
