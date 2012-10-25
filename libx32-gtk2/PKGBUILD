@@ -1,13 +1,14 @@
-# $Id: PKGBUILD 76653 2012-09-25 20:30:51Z bluewind $
-# Maintainer:  Ionut Biru <ibiru@archlinux.org
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer:  Ionut Biru <ibiru@archlinux.org
 # Contributor: Pierre Schmitz <pierre@archlinux.de>
 # Contributor: Mikko Seppälä <t-r-a-y@mbnet.fi>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=gtk2
 pkgname=libx32-$_pkgbasename
 pkgver=2.24.13
 pkgrel=1.1
-pkgdesc="The GTK+ Toolkit (v2) (x32 ABI)"
+pkgdesc='The GTK+ Toolkit (v2) (x32 ABI)'
 arch=('x86_64')
 url="http://www.gtk.org/"
 install=gtk2.install

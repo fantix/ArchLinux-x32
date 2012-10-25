@@ -1,12 +1,13 @@
-# Maintainer: Peter Lewis <plewis@aur.archlinux.org>
+# Upstream Maintainer: Peter Lewis <plewis@aur.archlinux.org>
 # Contributor: Allan McRae <allan@archlinux.org>
 # Contributor: Tom Newsom <Jeepster@gmx.co.uk>
 # Contributor: Jesse Juhani Jaara <jesse.jaara@gmail.com>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 pkgname=libx32-libmikmod
 pkgver=3.1.12
 pkgrel=6.1
-pkgdesc="A portable sound library"
+pkgdesc='Portable sound library (x32 ABI)'
 license=('GPL' 'LGPL')
 url="http://sourceforge.net/projects/mikmod/"
 arch=('x86_64')

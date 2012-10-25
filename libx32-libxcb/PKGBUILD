@@ -1,12 +1,13 @@
-# $Id: PKGBUILD 77153 2012-10-05 21:31:24Z bluewind $
-# Maintainer: Alexander Baldeck <alexander@archlinux.org>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Alexander Baldeck <alexander@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=libxcb
 pkgname=libx32-$_pkgbasename
 pkgver=1.9
 pkgrel=1.1
-pkgdesc="X11 client-side library (x32 ABI)"
+pkgdesc='X11 client-side library (x32 ABI)'
 arch=(x86_64)
 url="http://xcb.freedesktop.org/"
 depends=('libx32-libxdmcp' 'libx32-libxau' $_pkgbasename)

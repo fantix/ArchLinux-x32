@@ -1,11 +1,12 @@
-# $Id: PKGBUILD 60259 2011-12-08 19:40:11Z bluewind $
-# Maintainer: Andreas Radke <andyrtr@archlinux.org>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Andreas Radke <andyrtr@archlinux.org>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=libgcrypt
 pkgname=libx32-$_pkgbasename
 pkgver=1.5.0
 pkgrel=1.1
-pkgdesc="a general purpose crypto library based on the code used (x32 ABI)"
+pkgdesc='General purpose crypto library based on the code used (x32 ABI)'
 arch=(x86_64)
 url="http://www.gnupg.org"
 license=('LGPL')

@@ -1,11 +1,12 @@
-# $Id: PKGBUILD 63971 2012-02-08 18:48:18Z pschmitz $
-# Maintainer: Jan "heftig" Steffens <jan.steffens@gmail.com>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Jan "heftig" Steffens <jan.steffens@gmail.com>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=flac
 pkgname=libx32-$_pkgbasename
 pkgver=1.2.1
 pkgrel=8.1
-pkgdesc="Free Lossless Audio Codec (x32 ABI)"
+pkgdesc='Free Lossless Audio Codec (x32 ABI)'
 arch=('x86_64')
 url="http://flac.sourceforge.net/"
 license=('custom:Xiph' 'LGPL' 'GPL' 'FDL')

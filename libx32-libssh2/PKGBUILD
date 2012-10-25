@@ -1,15 +1,16 @@
-# Maintainer: Florian Pritz <flo@xssn.at>
-# $Id: PKGBUILD 71572 2012-05-29 20:53:33Z bluewind $
+# Upstream Maintainer: Florian Pritz <flo@xssn.at>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Contributor: Angel Velasquez <angvp@archlinux.org> 
 # Contributor: Sergej Pupykin <pupykin.s+arch@gmail.com>
 # Contributor: Andrea Scarpino <andrea@archlinux.org>
 # Contributor: ice-man <icemanf@gmail.com>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=libssh2
 pkgname=libx32-$_pkgbasename
 pkgver=1.4.2
 pkgrel=1.1
-pkgdesc="A library implementing the SSH2 protocol as defined by Internet Drafts (x32 ABI)"
+pkgdesc='Library implementing the SSH2 protocol as defined by Internet Drafts (x32 ABI)'
 url="http://www.libssh2.org/"
 arch=('x86_64')
 license=('BSD')

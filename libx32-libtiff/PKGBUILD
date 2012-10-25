@@ -1,12 +1,13 @@
-# $Id: PKGBUILD 77411 2012-10-09 17:13:22Z bluewind $
-# Maintainer: Eric Belanger <eric@archlinux.org>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Eric Belanger <eric@archlinux.org>
 # Contributor: dorphell <dorphell@archlinux.org>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=libtiff
 pkgname=libx32-$_pkgbasename
 pkgver=4.0.3
 pkgrel=1.1
-pkgdesc="Library for manipulation of TIFF images (x32 ABI)"
+pkgdesc='Library for manipulation of TIFF images (x32 ABI)'
 arch=('x86_64')
 url="http://www.remotesensing.org/libtiff/"
 license=('custom')

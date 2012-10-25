@@ -1,12 +1,13 @@
-# Maintainer:  Ionut Biru <ibiru@archlinux.org>
+# Upstream Maintainer:  Ionut Biru <ibiru@archlinux.org>
 # Contributor: mightyjaym <jm.ambrosino@free.fr>
 # Contributor: Mikko Seppälä <t-r-a-y@mbnet.fi>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=e2fsprogs
 pkgname=libx32-e2fsprogs
 pkgver=1.42.4
 pkgrel=1.1
-pkgdesc="Ext2 filesystem libraries (x32 ABI)"
+pkgdesc='Ext2 filesystem libraries (x32 ABI)'
 arch=('x86_64')
 license=('GPL' 'LGPL' 'MIT')
 url="http://e2fsprogs.sourceforge.net"

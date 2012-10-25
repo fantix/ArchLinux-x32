@@ -1,7 +1,8 @@
-# $Id: PKGBUILD 75726 2012-08-29 17:47:02Z heftig $
-# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: Allan McRae <allan@archlinux.org>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 # toolchain build order: linux-api-headers->glibc->binutils->gcc->binutils->glibc
 # NOTE: valgrind requires rebuilt with each major glibc version
@@ -10,7 +11,7 @@ _pkgbasename=glibc
 pkgname=libx32-$_pkgbasename
 pkgver=2.16.0
 pkgrel=4.1
-pkgdesc="GNU C Library for X32 ABI"
+pkgdesc='GNU C Library for x32 ABI'
 arch=('x86_64')
 url="http://www.gnu.org/software/libc"
 license=('GPL' 'LGPL')

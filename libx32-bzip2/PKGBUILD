@@ -1,12 +1,13 @@
-#$Id: PKGBUILD 53422 2011-08-03 14:41:13Z ibiru $
-# Maintainer: Sven-Hendrik Haase <sh@lutzhaase.com>
+#$Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Contributor: TryA <tryagainprod {at} gmail.com>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=bzip2
 pkgname=libx32-bzip2
 pkgver=1.0.6
 pkgrel=1.1
-pkgdesc="A high-quality data compression program (x32 ABI)"
+pkgdesc='High-quality data compression program (x32 ABI)'
 arch=('x86_64')
 license=('custom')
 url="http://sources.redhat.com/bzip2"

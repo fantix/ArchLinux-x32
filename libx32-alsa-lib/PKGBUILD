@@ -1,11 +1,12 @@
-# $Id: PKGBUILD 75959 2012-09-07 10:04:58Z lcarlier $
-# Maintainer: Jan "heftig" Steffens <jan.steffens@gmail.com>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Jan "heftig" Steffens <jan.steffens@gmail.com>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=alsa-lib
 pkgname=libx32-${_pkgbasename}
 pkgver=1.0.26
 pkgrel=1.1
-pkgdesc="An alternative implementation of Linux sound support (x32 ABI)"
+pkgdesc='An alternative implementation of Linux sound support (x32 ABI)'
 arch=('x86_64')
 url="http://www.alsa-project.org"
 depends=('libx32-glibc' $_pkgbasename)

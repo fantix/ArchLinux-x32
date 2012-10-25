@@ -1,6 +1,7 @@
-# Maintainer: Biru Ionut <ionut@archlinux.ro>
+# Upstream Maintainer: Biru Ionut <ionut@archlinux.ro>
 # Contributor: Mikko Seppälä <t-r-a-y@mbnet.fi>
 # Contributor: Kaos < gianlucaatlas dot gmail dot com >
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=sqlite
 pkgname=libx32-sqlite
@@ -9,7 +10,7 @@ _amalgamationver=3071401
 _docver=3071400
 pkgver=3.7.14.1
 pkgrel=1.1
-pkgdesc="A C library that implements an SQL database engine (x32 ABI)"
+pkgdesc='C library that implements an SQL database engine (x32 ABI)'
 arch=('x86_64')
 license=('custom')
 url="http://www.sqlite.org/"

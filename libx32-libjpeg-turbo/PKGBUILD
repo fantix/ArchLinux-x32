@@ -1,12 +1,13 @@
-# $Id: PKGBUILD 73347 2012-07-06 15:35:45Z bluewind $
-# Maintainer: Allan McRae <allan@archlinux.org>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Allan McRae <allan@archlinux.org>
 # Contributor: Simone Sclavi 'Ito' <darkhado@gmail.com>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=libjpeg-turbo
 pkgname=libx32-$_pkgbasename
 pkgver=1.2.1
 pkgrel=1.1
-pkgdesc="libjpeg derivative with accelerated baseline JPEG compression and decompression (x32 ABI)"
+pkgdesc='Libjpeg derivative with accelerated baseline JPEG compression and decompression (x32 ABI)'
 arch=('x86_64')
 url="http://libjpeg-turbo.virtualgl.org/"
 license=('GPL' 'custom')

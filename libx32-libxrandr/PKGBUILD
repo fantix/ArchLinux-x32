@@ -1,11 +1,12 @@
-# $Id: PKGBUILD 75217 2012-08-16 11:10:33Z bluewind $
-# Maintainer: Alexander Baldeck <alexander@archlinux.org>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Alexander Baldeck <alexander@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 _pkgbasename=libxrandr
 pkgname=libx32-$_pkgbasename
 pkgver=1.4.0
 pkgrel=1.1
-pkgdesc="X11 RandR extension library (x32 ABI)"
+pkgdesc='X11 RandR extension library (x32 ABI)'
 arch=('x86_64')
 license=('custom')
 url="http://xorg.freedesktop.org/"

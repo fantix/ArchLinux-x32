@@ -1,13 +1,14 @@
-# $Id: PKGBUILD 74438 2012-07-28 15:03:26Z bluewind $
-# Maintainer:  Ionut Biru <ibiru@archlinux.org>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer:  Ionut Biru <ibiru@archlinux.org>
 # Contributor: Pierre Schmitz <pierre@archlinux.de>
 # Contributor: Mikko Seppälä <t-r-a-y@mbnet.fi>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=glib2
 pkgname=libx32-$_pkgbasename
 pkgver=2.32.4
 pkgrel=1.1
-pkgdesc="Common C routines used by GTK+ 2.4 and other libs (x32 ABI)"
+pkgdesc='Common C routines used by GTK+ 2.4 and other libs (x32 ABI)'
 url="http://www.gtk.org/"
 arch=('x86_64')
 license=('LGPL')

@@ -1,12 +1,13 @@
-# $Id: PKGBUILD 75223 2012-08-16 11:15:03Z bluewind $
-# Maintainer: Jan de Groot <jgc@archlinux.org>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Jan de Groot <jgc@archlinux.org>
 # Contributor: John Proctor <jproctor@prium.net>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=libxml2
 pkgname=libx32-$_pkgbasename
 pkgver=2.8.0
 pkgrel=1.1
-pkgdesc="XML parsing library, version 2 (x32 ABI)"
+pkgdesc='XML parsing library, version 2 (x32 ABI)'
 arch=(x86_64)
 license=('custom')
 depends=('libx32-zlib>=1.2.4' 'libx32-readline>=6.1' 'libx32-ncurses>=5.7' 'python2-x32' $_pkgbasename)

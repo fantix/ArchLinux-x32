@@ -1,12 +1,13 @@
-# $Id: PKGBUILD 74082 2012-07-19 19:40:24Z heftig $
-# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# Upstream Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 # Contributor: Corrado Primier <bardo@aur.archlinux.org>
 # Contributor: William Rea <sillywilly@gmail.com>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=libpulse
 pkgname=libx32-$_pkgbasename
-pkgdesc="A featureful, general-purpose sound server (x32 ABI client libraries)"
+pkgdesc='Featureful, general-purpose sound server (x32 ABI client libraries)'
 pkgver=2.1
 pkgrel=1.1
 arch=(x86_64)
