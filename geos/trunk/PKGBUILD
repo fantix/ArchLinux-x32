@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 75947 2012-09-06 19:45:18Z jlichtblau $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Jaroslav Lichtblau <dragonlord@aur.archlinux.org>
 # Contributor: dibblethewrecker dibblethewrecker.at.jiwe.dot.org
 # Contributor: William Rea <sillywilly@gmail.com>
@@ -7,7 +7,7 @@
 pkgname=geos
 pkgver=3.3.5
 pkgrel=1
-pkgdesc="C++ port of the Java Topology Suite"
+pkgdesc='C++ port of the Java Topology Suite'
 arch=('x86_64' 'i686')
 url="http://trac.osgeo.org/geos/"
 license=('LGPL')

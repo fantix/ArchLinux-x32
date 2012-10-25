@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 75103 2012-08-13 23:24:06Z bgyorgy $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 # Contributor: Anton Bazhenov <anton.bazhenov at gmail>
 # Contributor: Jaroslav Lichtblau <dragonlord@aur.archlinux.org>
@@ -9,7 +9,7 @@ pkgname=simutrans
 pkgver=111.3.1
 _pkgver=111-3-1
 pkgrel=1
-pkgdesc="An open source transportation simulation game"
+pkgdesc='Open source transportation simulation game'
 arch=('i686' 'x86_64')
 url="http://simutrans.com/"
 license=('PerlArtistic')

@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 75781 2012-08-31 07:22:05Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Ionut Biru <ibiru@archlinux.org>
 _pkgbasename=gdk-pixbuf2
 pkgname=lib32-$_pkgbasename
 pkgver=2.26.3
 pkgrel=1
-pkgdesc="An image loading library (32-bit)"
+pkgdesc='Image loading library (32-bit)'
 arch=('x86_64')
 url="http://www.gtk.org/"
 license=('GPL2')

@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 69957 2012-04-27 07:19:51Z lcarlier $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 pkgname=lib32-libffi
 pkgver=3.0.11
 pkgrel=1
-pkgdesc="A portable, high level programming interface to various calling conventions (32 bits version)"
+pkgdesc='Portable, high level programming interface to various calling conventions (32 bits version)'
 arch=('x86_64')
 license=('MIT')
 url="http://sourceware.org/libffi"

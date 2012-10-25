@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 75959 2012-09-07 10:04:58Z lcarlier $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Jan "heftig" Steffens <jan.steffens@gmail.com>
 
 _pkgbasename=alsa-lib
 pkgname=lib32-${_pkgbasename}
 pkgver=1.0.26
 pkgrel=1
-pkgdesc="An alternative implementation of Linux sound support (32 bit)"
+pkgdesc='Alternative implementation of Linux sound support (32 bit)'
 arch=('x86_64')
 url="http://www.alsa-project.org"
 depends=('lib32-glibc' $_pkgbasename)

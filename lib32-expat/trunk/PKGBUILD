@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 68877 2012-04-04 16:55:17Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 
 _pkgbasename=expat
 pkgname=lib32-${_pkgbasename}
 pkgver=2.1.0
 pkgrel=1
-pkgdesc="An XML Parser library written in C (32 bit)"
+pkgdesc='XML Parser library written in C (32 bit)'
 arch=('x86_64')
 url="http://expat.sourceforge.net/"
 license=('custom')

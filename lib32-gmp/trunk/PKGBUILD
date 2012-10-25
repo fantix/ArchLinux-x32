@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 70672 2012-05-14 16:07:52Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Florian Pritz <bluewind@xinu.at>
 # Contributor: josephgbr <rafael.f.f1@gmail.com>
 
@@ -6,7 +6,7 @@ _pkgbasename=gmp
 pkgname=lib32-$_pkgbasename
 pkgver=5.0.5
 pkgrel=1
-pkgdesc="A free library for arbitrary precision arithmetic (32-bit)"
+pkgdesc='Free library for arbitrary precision arithmetic (32-bit)'
 arch=('x86_64')
 url="http://gmplib.org/"
 depends=('lib32-gcc-libs' $_pkgbasename)

@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 71891 2012-06-02 22:17:58Z lcarlier $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Ionut Biru <ibiru@archlinux.org>
 _pkgbasename=libxft
 pkgname=lib32-$_pkgbasename
 pkgver=2.3.1
 pkgrel=1
-pkgdesc="FreeType-based font drawing library for X (32-bit)"
+pkgdesc='FreeType-based font drawing library for X (32-bit)'
 arch=('x86_64')
 license=('custom')
 url="http://xorg.freedesktop.org/"

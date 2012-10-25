@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 67295 2012-03-07 21:48:22Z lcarlier $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Alexander Baldeck <alexander@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 _pkgbasename=libxau
 pkgname=lib32-$_pkgbasename
 pkgver=1.0.7
 pkgrel=1
-pkgdesc="X11 authorisation library (32-bit)"
+pkgdesc='X11 authorisation library (32-bit)'
 arch=(x86_64)
 url="http://xorg.freedesktop.org/"
 depends=('lib32-glibc' $_pkgbasename)

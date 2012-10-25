@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 61158 2011-12-22 21:01:49Z lcarlier $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Thomas Bächler <thomas@archlinux.org>
 
 _pkgbasename=attr
 pkgname=lib32-$_pkgbasename
 pkgver=2.4.46
 pkgrel=2
-pkgdesc="Extended attribute support library for ACL support (32-bit)"
+pkgdesc='Extended attribute support library for ACL support (32-bit)'
 arch=(x86_64)
 url="http://savannah.nongnu.org/projects/attr"
 license=('LGPL')

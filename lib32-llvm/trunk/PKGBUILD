@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 74483 2012-07-29 14:47:55Z lcarlier $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Evangelos Foutras <foutrelis@gmail.com>
 # Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
 # Contributor: Sebastian Nowicki <sebnow@gmail.com>
@@ -80,7 +80,7 @@ build() {
 }
 
 package() {
-  pkgdesc="Low Level Virtual Machine (32 bits version)"
+pkgdesc='Low Level Virtual Machine (32 bits version)'
   depends=('lib32-libffi' 'llvm')
 
   cd "$srcdir/llvm-$pkgver.src"

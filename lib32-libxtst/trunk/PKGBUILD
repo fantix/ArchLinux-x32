@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 68134 2012-03-18 14:37:26Z lcarlier $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libxtst
 pkgname=lib32-$_pkgbasename
 pkgver=1.2.1
 pkgrel=1
-pkgdesc="X11 Testing -- Resource extension library (32-bit)"
+pkgdesc='X11 Testing -- Resource extension library (32-bit)'
 arch=(x86_64)
 url="http://xorg.freedesktop.org/"
 license=('custom')

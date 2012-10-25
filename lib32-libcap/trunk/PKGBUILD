@@ -1,11 +1,11 @@
-#$Id: PKGBUILD 66704 2012-02-27 17:12:30Z ibiru $
+#$Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Hugo Doria <hugo@archlinux.org>
 
 _pkgbasename=libcap
 pkgname=lib32-$_pkgbasename
 pkgver=2.22
 pkgrel=1
-pkgdesc="POSIX 1003.1e capabilities (32-bit)"
+pkgdesc='POSIX 1003.1e capabilities (32-bit)'
 arch=(x86_64)
 url="http://www.kernel.org/pub/linux/libs/security/linux-privs/"
 license=('GPL2')

@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 75215 2012-08-16 11:05:07Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Florian Pritz <flo@xinu.at>
 # Contributor: Stéphane Gaudreault <stephane@archlinux.org>
 
@@ -6,7 +6,7 @@ _pkgbasename=krb5
 pkgname=lib32-$_pkgbasename
 pkgver=1.10.3
 pkgrel=1
-pkgdesc="The Kerberos network authentication system (32-bit)"
+pkgdesc='The Kerberos network authentication system (32-bit)'
 arch=('x86_64')
 url="http://web.mit.edu/kerberos/"
 license=('custom')

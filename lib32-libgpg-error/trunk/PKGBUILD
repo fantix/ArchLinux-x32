@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 60261 2011-12-08 19:42:09Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: judd <jvinet@zeroflux.org>
 
 _pkgbasename=libgpg-error
 pkgname=lib32-$_pkgbasename
 pkgver=1.10
 pkgrel=1
-pkgdesc="Support library for libgcrypt (32-bit)"
+pkgdesc='Support library for libgcrypt (32-bit)'
 arch=(x86_64)
 url="http://www.gnupg.org"
 license=('LGPL')

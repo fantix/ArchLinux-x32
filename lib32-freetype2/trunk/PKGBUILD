@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 72525 2012-06-16 10:07:07Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Ionut Biru <ibiru@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
@@ -6,7 +6,7 @@ _pkgbasename=freetype2
 pkgname=lib32-$_pkgbasename
 pkgver=2.4.10
 pkgrel=1
-pkgdesc="TrueType font rendering library (32-bit)"
+pkgdesc='TrueType font rendering library (32-bit)'
 arch=(x86_64)
 license=('GPL')
 url="http://freetype.sourceforge.net"

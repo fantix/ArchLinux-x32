@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 60259 2011-12-08 19:40:11Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Andreas Radke <andyrtr@archlinux.org>
 
 _pkgbasename=libgcrypt
 pkgname=lib32-$_pkgbasename
 pkgver=1.5.0
 pkgrel=1
-pkgdesc="a general purpose crypto library based on the code used (32-bit)"
+pkgdesc='General purpose crypto library based on the code used (32-bit)'
 arch=(x86_64)
 url="http://www.gnupg.org"
 license=('LGPL')

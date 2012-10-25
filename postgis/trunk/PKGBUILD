@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 76604 2012-09-24 14:48:24Z dan $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Jaroslav Lichtblau <dragonlord@aur.archlinux.org>
 # Contributor: dibblethewrecker dibblethewrecker.at.jiwe.dot.org
 # Contributor: William Rea <sillywilly@gmail.com>
@@ -6,7 +6,7 @@
 pkgname=postgis
 pkgver=2.0.1
 pkgrel=1
-pkgdesc="Adds support for geographic objects to PostgreSQL"
+pkgdesc='Adds support for geographic objects to PostgreSQL'
 arch=('i686' 'x86_64')
 url="http://postgis.org/"
 license=('GPL')

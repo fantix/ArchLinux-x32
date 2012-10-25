@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 69229 2012-04-10 16:20:11Z lcarlier $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 # Contributor: Alexander Baldeck <alexander@archlinux.org>
 
@@ -6,7 +6,7 @@ _pkgbasename=libpciaccess
 pkgname=lib32-${_pkgbasename}
 pkgver=0.13.1
 pkgrel=1
-pkgdesc="X11 PCI access library (32-bit"
+pkgdesc='X11 PCI access library (32-bit'
 arch=(i686 x86_64)
 license=('custom')
 url="http://xorg.freedesktop.org/"

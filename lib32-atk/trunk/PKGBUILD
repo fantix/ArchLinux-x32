@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 70626 2012-05-13 11:29:32Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Contributor: Pierre Schmitz <pierre@archlinux.de>
 # Maintainer: Mikko Seppälä <t-r-a-y@mbnet.fi>
 _pkgbasename=atk
 pkgname=lib32-$_pkgbasename
 pkgver=2.4.0
 pkgrel=1
-pkgdesc="A library providing a set of interfaces for accessibility (32-bit)"
+pkgdesc='Library providing a set of interfaces for accessibility (32-bit)'
 arch=('x86_64')
 license=('LGPL')
 depends=('lib32-glib2>=2.25.17' $_pkgbasename)

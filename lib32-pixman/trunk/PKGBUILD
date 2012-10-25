@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 73349 2012-07-06 15:36:55Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer : Ionut Biru <ibiru@archlinux.org>
 _pkgbasename=pixman
 pkgname=lib32-$_pkgbasename
 pkgver=0.26.2
 pkgrel=1
-pkgdesc="Pixman library (32-bit)"
+pkgdesc='Pixman library (32-bit)'
 arch=('x86_64')
 url="http://xorg.freedesktop.org"
 license=('custom')

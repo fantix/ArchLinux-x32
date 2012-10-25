@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 75963 2012-09-07 10:17:27Z bluewind $
+# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 _pkgbasename=fontconfig
 pkgname=lib32-$_pkgbasename
 pkgver=2.10.1
 pkgrel=1
-pkgdesc="A library for configuring and customizing font access (32-bit)"
+pkgdesc='Library for configuring and customizing font access (32-bit)'
 arch=(x86_64)
 url="http://www.fontconfig.org/release/"
 license=('custom')
