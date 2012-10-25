@@ -1,16 +1,16 @@
 #!/bin/bash
 
-daemon_name=redis
+daemon_name=redis-x32
 
 . /etc/rc.conf
 . /etc/rc.d/functions
 
 REDISPORT=6379
-EXEC=/usr/bin/redis-server
-CLIEXEC=/usr/bin/redis-cli
-PIDFILE=/var/run/redis.pid
-WORKDIR=/var/lib/redis
-CONF="/etc/redis.conf"
+EXEC=/usr/bin/redis-server-x32
+CLIEXEC=/usr/bin/redis-cli-x32
+PIDFILE=/var/run/redis-x32.pid
+WORKDIR=/var/lib/redis-x32
+CONF="/etc/redis-x32.conf"
 
 # Check if process exists
 PID=$(cat $PIDFILE 2>/dev/null)
