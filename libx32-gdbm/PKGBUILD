@@ -1,16 +1,17 @@
-# Maintainer: josephgbr <rafael.f.f1 at gmail.com>
+# Upstream Maintainer: josephgbr <rafael.f.f1 at gmail.com>
 # Contributor: Maribu <leonidas200 at web dot de>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbase=gdbm
-pkgname=lib32-$_pkgbase
+pkgname=libx32-$_pkgbase
 pkgver=1.10
-pkgrel=1
-pkgdesc="GNU database library (32 bit)"
+pkgrel=1.1
+pkgdesc="GNU database library (x32 ABI)"
 license=('GPL')
 url="http://www.gnu.org/software/gdbm/gdbm.html"
 arch=('x86_64')
-depends=('lib32-glibc' "$_pkgbase")
-makedepends=('gcc-multilib')
+depends=('libx32-glibc' "$_pkgbase")
+makedepends=('gcc-multilib-x32')
 source=(ftp://ftp.gnu.org/gnu/gdbm/${_pkgbase}-${pkgver}.tar.gz
         gdbm-1.10-zeroheaders.patch)
 options=('!libtool' '!makeflags')
@@ -18,7 +19,7 @@ md5sums=('88770493c2559dc80b561293e39d3570'
          '2a5979910c338dabda6935263b3d8af9')
 
 build() {
-  export CC='gcc -m32'
+  export CC='gcc -mx32'
   
   cd "${srcdir}/${_pkgbase}-${pkgver}"
 
@@ -34,7 +35,7 @@ build() {
               --mandir=/usr/share/man \
               --infodir=/usr/share/info \
               --enable-libgdbm-compat \
-              --libdir=/usr/lib32
+              --libdir=/usr/libx32
 
   make prefix=/usr
 }
@@ -51,7 +52,7 @@ package() {
        manprefix="$pkgdir/usr/share/man" \
        man3dir="$pkgdir/usr/share/man/man3" \
        infodir="$pkgdir/usr/share/info" \
-       libdir="$pkgdir/usr/lib32" \
+       libdir="$pkgdir/usr/libx32" \
        install
 
   rm -rf "${pkgdir}/usr"/{bin,share,include}
