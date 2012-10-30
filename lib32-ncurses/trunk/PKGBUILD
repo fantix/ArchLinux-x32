@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Maintainer: Allan McRae <allan@archlinux.org>
 # Contributor: judd <jvinet@zeroflux.org>
 
@@ -6,7 +6,7 @@ _pkgbasename=ncurses
 pkgname=lib32-${_pkgbasename}
 pkgver=5.9
 pkgrel=1
-pkgdesc='System V Release 4.0 curses emulation library (32-bit)'
+pkgdesc="System V Release 4.0 curses emulation library (32-bit)"
 arch=('x86_64')
 url="http://www.gnu.org/software/ncurses/"
 license=('MIT')

@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Maintainer: Jan "heftig" Steffens <jan.steffens@gmail.com>
 
 _pkgbasename=flac
 pkgname=lib32-$_pkgbasename
 pkgver=1.2.1
 pkgrel=8
-pkgdesc='Free Lossless Audio Codec (32-bit)'
+pkgdesc="Free Lossless Audio Codec (32-bit)"
 arch=('x86_64')
 url="http://flac.sourceforge.net/"
 license=('custom:Xiph' 'LGPL' 'GPL' 'FDL')

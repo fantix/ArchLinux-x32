@@ -1,4 +1,4 @@
-#$Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+#$Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Maintainer: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Contributor: TryA <tryagainprod {at} gmail.com>
 
@@ -6,7 +6,7 @@ _pkgbasename=bzip2
 pkgname=lib32-bzip2
 pkgver=1.0.6
 pkgrel=1
-pkgdesc='High-quality data compression program (32-bit)'
+pkgdesc="A high-quality data compression program (32-bit)"
 arch=('x86_64')
 license=('custom')
 url="http://sources.redhat.com/bzip2"

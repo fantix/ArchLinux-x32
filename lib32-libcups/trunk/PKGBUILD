@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Maintainer: Andreas Radke <andyrtr@archlinux.org>
 
 _pkgbasename=libcups
 pkgname=lib32-$_pkgbasename
 pkgver=1.6.1
 pkgrel=1
-pkgdesc='The CUPS Printing System - client libraries (32-bit)'
+pkgdesc="The CUPS Printing System - client libraries (32-bit)"
 arch=('x86_64')
 license=('GPL')
 url="http://www.cups.org/"

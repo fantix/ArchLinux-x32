@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Maintainer: Dave Reisner <dreisner@archlinux.org>
 # Contributor: judd <jvinet@zeroflux.org>
 
@@ -6,7 +6,7 @@ _pkgbasename=util-linux
 pkgname=lib32-$_pkgbasename
 pkgver=2.22.1
 pkgrel=1
-pkgdesc='Miscellaneous system utilities for Linux (32-bit)'
+pkgdesc="Miscellaneous system utilities for Linux (32-bit)"
 url='http://www.kernel.org/pub/linux/utils/util-linux/'
 arch=('x86_64')
 depends=('lib32-glibc' "$_pkgbasename")

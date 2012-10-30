@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Maintainer: Tobias Powalowski <tpowa@archlinux.org>
 _pkgbasename=keyutils
 pkgname=lib32-$_pkgbasename
 pkgver=1.5.5
 pkgrel=1
-pkgdesc='Linux Key Management Utilities (32-bit)'
+pkgdesc="Linux Key Management Utilities (32-bit)"
 arch=(x86_64)
 url="http://www.kernel.org"
 license=('GPL2' 'LGPL2.1')

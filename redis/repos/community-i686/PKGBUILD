@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 78721 2012-10-23 08:36:04Z spupykin $
+# $Id: PKGBUILD 79039 2012-10-29 14:32:21Z spupykin $
 # Maintainer: Sergej Pupykin <pupykin.s+arch@gmail.com>
 # Maintainer: Jan-Erik Rediger <badboy at archlinux dot us>
 # Contributor: nofxx <x@<nick>.com>
 
 pkgname=redis
-pkgver=2.6.0
+pkgver=2.6.2
 pkgrel=1
 pkgdesc="Advanced key-value store"
 arch=('i686' 'x86_64')
@@ -18,7 +18,7 @@ source=("http://redis.googlecode.com/files/${pkgname}-${pkgver}.tar.gz"
 	"redis.d"
 	"redis.service"
 	"redis.logrotate")
-md5sums=('92f224a0df37e0b777a2eb3f38a2f128'
+md5sums=('4f788dfb3ee86c7e864dfe537870bb5a'
          '8d843919d9f165e9a47e56cadb4ac2ed'
          '5ab9fdb200e15c13b450fda77fa030b6'
          '9e2d75b7a9dc421122d673fe520ef17f')

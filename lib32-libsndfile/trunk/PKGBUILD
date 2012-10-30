@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Maintainer: Jan "heftig" Steffens <jan.steffens@gmail.com>
 
 _pkgbasename=libsndfile
 pkgname=lib32-$_pkgbasename
 pkgver=1.0.25
 pkgrel=2
-pkgdesc='C library for reading and writing files containing sampled sound (32-bit)'
+pkgdesc="A C library for reading and writing files containing sampled sound (32-bit)"
 arch=('x86_64')
 url="http://www.mega-nerd.com/libsndfile"
 license=('LGPL')
