@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Upstream Maintainer: Jan de Groot <jgc@archlinux.org>
 # Contributor: dorphell <dorphell@archlinux.org>
 # Contributor: Travis Willard <travis@archlinux.org>
@@ -11,7 +11,7 @@ pkgver=1.5.13
 _apngver=1.5.13
 _libversion=15
 pkgrel=1.1
-pkgdesc='Collection of routines used to create PNG format graphics files (x32 ABI)'
+pkgdesc="A collection of routines used to create PNG format graphics files (x32 ABI)"
 arch=('x86_64')
 url="http://www.libpng.org/pub/png/libpng.html"
 license=('custom')

@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Upstream Maintainer: Jaroslav Lichtblau <dragonlord@aur.archlinux.org>
 # Contributor: Mateusz Herych <heniekk@gmail.com>
 # Contributor: dibblethewrecker dibblethewrecker.at.jiwe.dot.org
@@ -9,7 +9,7 @@ _basepkgname=proj
 pkgname=libx32-proj
 pkgver=4.8.0
 pkgrel=1.1
-pkgdesc='Cartographic Projections library (x32 ABI)'
+pkgdesc='Cartographic Projections library (x32 ABI).'
 arch=('x86_64')
 url="http://trac.osgeo.org/proj/"
 license=('MIT')

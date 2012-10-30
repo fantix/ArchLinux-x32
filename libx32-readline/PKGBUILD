@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Contributor: Allan McRae <allan@archlinux.org>
 # Contributor: judd <jvinet@zeroflux.org>
 # Maintainer: Fantix King <fantix.king at gmail.com>
@@ -9,7 +9,7 @@ _basever=6.2
 _patchlevel=004 #prepare for some patches
 pkgver=$_basever.$_patchlevel
 pkgrel=1.1
-pkgdesc='GNU readline library (x32 ABI)'
+pkgdesc="GNU readline library (x32 ABI)"
 arch=(x86_64)
 url="http://tiswww.case.edu/php/chet/readline/rltop.html"
 license=('GPL')

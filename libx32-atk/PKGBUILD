@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Contributor: Pierre Schmitz <pierre@archlinux.de>
 # Upstream Maintainer: Mikko Seppälä <t-r-a-y@mbnet.fi>
 # Maintainer: Fantix King <fantix.king at gmail.com>
@@ -6,7 +6,7 @@ _pkgbasename=atk
 pkgname=libx32-$_pkgbasename
 pkgver=2.4.0
 pkgrel=1.1
-pkgdesc='Library providing a set of interfaces for accessibility (x32 ABI)'
+pkgdesc="A library providing a set of interfaces for accessibility (x32 ABI)"
 arch=('x86_64')
 license=('LGPL')
 depends=('libx32-glib2>=2.25.17' $_pkgbasename)

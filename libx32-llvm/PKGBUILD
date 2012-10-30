@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Upstream Maintainer: Evangelos Foutras <foutrelis@gmail.com>
 # Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
 # Contributor: Sebastian Nowicki <sebnow@gmail.com>
@@ -81,7 +81,7 @@ build() {
 }
 
 package() {
-pkgdesc='Low Level Virtual Machine (x32 ABI version)'
+  pkgdesc="Low Level Virtual Machine (x32 ABI version)"
   depends=('libx32-libffi' 'llvm')
 
   cd "$srcdir/llvm-$pkgver.src"

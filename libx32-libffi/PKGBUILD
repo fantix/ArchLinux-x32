@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Upstream Maintainer: Jan de Groot <jgc@archlinux.org>
 # Maintainer: Fantix King <fantix.king at gmail.com>
 
 pkgname=libx32-libffi
 pkgver=3.0.11
 pkgrel=1.1
-pkgdesc='Portable, high level programming interface to various calling conventions (x32 ABI version)'
+pkgdesc="A portable, high level programming interface to various calling conventions (x32 ABI version)"
 arch=('x86_64')
 license=('MIT')
 url="http://sourceware.org/libffi"

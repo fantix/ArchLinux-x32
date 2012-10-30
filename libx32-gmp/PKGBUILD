@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Upstream Maintainer: Florian Pritz <bluewind@xinu.at>
 # Contributor: josephgbr <rafael.f.f1@gmail.com>
 # Maintainer: Fantix King <fantix.king at gmail.com>
@@ -7,7 +7,7 @@ _pkgbasename=gmp
 pkgname=libx32-$_pkgbasename
 pkgver=5.0.5
 pkgrel=1.1
-pkgdesc='Free library for arbitrary precision arithmetic (x32 ABI)'
+pkgdesc="A free library for arbitrary precision arithmetic (x32 ABI)"
 arch=('x86_64')
 url="http://gmplib.org/"
 depends=('libx32-gcc-libs' $_pkgbasename)

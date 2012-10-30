@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78782 2012-10-24 15:17:40Z arodseth $
+# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
 # Upstream Maintainer : Ionut Biru <ibiru@archlinux.org>
 # Maintainer: Fantix King <fantix.king at gmail.com>
 
@@ -6,7 +6,7 @@ pkgname=libx32-dbus-core
 _pkgbasename=dbus-core
 pkgver=1.6.8
 pkgrel=1.1
-pkgdesc='Freedesktop.org message bus system (x32 ABI)'
+pkgdesc="Freedesktop.org message bus system (x32 ABI)"
 arch=('x86_64')
 url="http://www.freedesktop.org/Software/dbus"
 license=('GPL' 'custom')
