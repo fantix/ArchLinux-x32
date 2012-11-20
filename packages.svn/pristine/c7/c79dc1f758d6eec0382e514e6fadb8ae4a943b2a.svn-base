@@ -1,0 +1,66 @@
+# $Id$
+# Maintainer: Ronald van Haren <ronald.archlinux.org>
+# Contributor: Jan de Groot <jgc@archlinux.org>
+# Contributor: damir <damir@archlinux.org>
+# Contributor: Jason Taylor <jftaylor21@gmail.com>
+
+pkgbase=lapack
+pkgname=('lapack' 'blas')
+pkgver=3.4.2
+pkgrel=1
+url="http://www.netlib.org/lapack"
+pkgdesc="Linear Algebra PACKage"
+makedepends=('gcc-fortran' 'cmake')
+depends=('gcc-libs')
+arch=('i686' 'x86_64')
+license=("custom")
+source=(http://www.netlib.org/${pkgbase}/${pkgbase}-${pkgver}.tgz
+        LICENSE.blas)
+sha1sums=('93a6e4e6639aaf00571d53a580ddc415416e868b'
+          '2491a151a37f0162b25fc4e4e9a8ac444b574a76')
+
+build() {
+  cd "${srcdir}"
+
+  install -d build
+  cd build
+  cmake ../${pkgname}-${pkgver} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_SKIP_RPATH=ON \
+    -DBUILD_SHARED_LIBS=ON \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_Fortran_COMPILER=gfortran
+  make
+}
+
+package_lapack() {
+  depends=("blas=${pkgver}")
+
+  install -m755 -d ${pkgdir}/usr/{lib,bin}
+  
+  for libname in liblapack libtmglib; do
+    install -m755 "${srcdir}/build/lib/${libname}.so" \
+      "${pkgdir}/usr/lib/"
+    ln -sf liblapack.so "${pkgdir}/usr/lib/${libname}.so.${pkgver}"
+    ln -sf liblapack.so "${pkgdir}/usr/lib/${libname}.so.3"
+  done
+  
+  install -m755 ${srcdir}/build/bin/* ${pkgdir}/usr/bin
+  install -m755 -d "${pkgdir}/usr/share/licenses/lapack"
+  install -m644 "${srcdir}/${pkgname}-${pkgver}/LICENSE" \
+    "${pkgdir}/usr/share/licenses/lapack/"
+}
+
+package_blas() {
+  pkgdesc="Basic Linear Algebra Subprograms"
+
+  install -m755 -d "${pkgdir}/usr/lib"
+  install -m755 "${srcdir}/build/lib/libblas.so" \
+      "${pkgdir}/usr/lib/"
+  ln -sf libblas.so "${pkgdir}/usr/lib/libblas.so.${pkgver}"
+  ln -sf libblas.so "${pkgdir}/usr/lib/libblas.so.3"
+
+  install -m755 -d "${pkgdir}/usr/share/licenses/blas"
+  install -m644 "${srcdir}/LICENSE.blas" \
+    "${pkgdir}/usr/share/licenses/blas/"
+}
