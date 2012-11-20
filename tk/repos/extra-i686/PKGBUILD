@@ -1,9 +1,9 @@
-# $Id: PKGBUILD 164388 2012-08-01 01:21:39Z allan $
+# $Id: PKGBUILD 170723 2012-11-10 04:52:11Z allan $
 # Maintainer: Allan McRae <allan@archlinux.org>
 # Contributor: Judd Vinet <jvinet@zeroflux.org>
 
 pkgname=tk
-pkgver=8.5.12
+pkgver=8.5.13
 pkgrel=1
 pkgdesc="A windowing toolkit for use with tcl"
 arch=('i686' 'x86_64')
@@ -11,7 +11,7 @@ url="http://tcl.sourceforge.net/"
 license=('custom')
 depends=("tcl=${pkgver}" 'libxss' 'libxft')
 source=(http://downloads.sourceforge.net/sourceforge/tcl/tk${pkgver}-src.tar.gz)
-md5sums=('a01640176845c1f654a412cfc9bab13b')
+md5sums=('1fc7dbb7495160756dbc805224afa360')
 
 build() {
   cd ${srcdir}/tk${pkgver}/unix

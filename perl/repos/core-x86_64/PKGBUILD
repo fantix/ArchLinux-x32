@@ -1,10 +1,11 @@
-# $Id: PKGBUILD 165149 2012-08-11 20:00:01Z bluewind $
-# Maintainer: Angel Velasquez <angvp@archlinux.org> 
+# $Id: PKGBUILD 170239 2012-11-05 22:39:18Z bluewind $
+# Maintainer: Florian Pritz <bluewind@xinu.at>
+# Contributor: Angel Velasquez <angvp@archlinux.org> 
 # Contributor: kevin <kevin.archlinux.org>
 # Contributor: judd <jvinet.zeroflux.org>
 # Contributor: francois <francois.archlinux.org> 
 pkgname=perl
-pkgver=5.16.1
+pkgver=5.16.2
 pkgrel=1
 pkgdesc="A highly capable, feature-rich programming language"
 arch=(i686 x86_64)
@@ -19,7 +20,7 @@ perlbin.csh
 provides.pl)
 install=perl.install
 options=('makeflags' '!purge')
-md5sums=('b87358e2c461a898cfd7c334e7dd8993'
+md5sums=('2818ab01672f005a4e552a713aa27b08'
          '5ed2542fdb9a60682f215bd33701e61a'
          '1f0cbbee783e8a6d32f01be5118e0d5e'
          '999c3eea6464860704abbb055a0f0896')
