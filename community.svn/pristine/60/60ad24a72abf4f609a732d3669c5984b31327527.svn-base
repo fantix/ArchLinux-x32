@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 89382 2013-04-29 02:58:00Z heftig $
+# $Id$
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 # Contributor: Allan McRae <allan@archlinux.org>
 
@@ -86,36 +86,6 @@ check() {
   # do not abort on error as some are "expected"
   make -k check || true
   ${srcdir}/${_basedir}/contrib/test_summary
-}
-
-package_lib32-gcc-libs()
-{
-  pkgdesc="Runtime libraries shipped by GCC (32-bit)"
-  depends=('lib32-glibc>=2.17' "gcc-libs>=$pkgver")
-
-  cd ${srcdir}/gcc-build
-  make -j1 -C $CHOST/32/libgcc DESTDIR=${pkgdir} install-shared
-  for lib in libmudflap libgomp libstdc++-v3/src libitm libsanitizer/asan; do
-    make -j1 -C $CHOST/32/$lib DESTDIR=${pkgdir} install-toolexeclibLTLIBRARIES
-  done
-  
-  make -j1 DESTDIR=${pkgdir} install-target-libquadmath
-  make -j1 DESTDIR=${pkgdir} install-target-libgfortran
-  make -j1 DESTDIR=${pkgdir} install-target-libobjc
-
-  # remove unnecessary files installed by install-target-{libquadmath,libgfortran,libobjc}
-  rm ${pkgdir}/usr/lib32/libgfortran.spec
-
-  # remove stuff in gcc-libs-multilib
-  rm -r ${pkgdir}/usr/lib
-  rm -r ${pkgdir}/usr/share/info
-
-  # remove static libraries
-  find ${pkgdir} -name *.a -delete
-  
-  # Install Runtime Library Exception
-  install -Dm644 ${srcdir}/${_basedir}/COPYING.RUNTIME \
-    ${pkgdir}/usr/share/licenses/lib32-gcc-libs/RUNTIME.LIBRARY.EXCEPTION
 }
 
 package_gcc-libs-multilib()
@@ -318,4 +288,34 @@ package_gcc-go-multilib()
   # Install Runtime Library Exception
   install -Dm644 ${srcdir}/${_basedir}/COPYING.RUNTIME \
     ${pkgdir}/usr/share/licenses/gcc-go-multilib/RUNTIME.LIBRARY.EXCEPTION
+}
+
+package_lib32-gcc-libs()
+{
+  pkgdesc="Runtime libraries shipped by GCC (32-bit)"
+  depends=('lib32-glibc>=2.17' "gcc-libs>=$pkgver")
+
+  cd ${srcdir}/gcc-build
+  make -j1 -C $CHOST/32/libgcc DESTDIR=${pkgdir} install-shared
+  for lib in libmudflap libgomp libstdc++-v3/src libitm libsanitizer/asan; do
+    make -j1 -C $CHOST/32/$lib DESTDIR=${pkgdir} install-toolexeclibLTLIBRARIES
+  done
+  
+  make -j1 DESTDIR=${pkgdir} install-target-libquadmath
+  make -j1 DESTDIR=${pkgdir} install-target-libgfortran
+  make -j1 DESTDIR=${pkgdir} install-target-libobjc
+
+  # remove unnecessary files installed by install-target-{libquadmath,libgfortran,libobjc}
+  rm ${pkgdir}/usr/lib32/libgfortran.spec
+
+  # remove stuff in gcc-libs-multilib
+  rm -r ${pkgdir}/usr/lib
+  rm -r ${pkgdir}/usr/share/info
+
+  # remove static libraries
+  find ${pkgdir} -name *.a -delete
+  
+  # Install Runtime Library Exception
+  install -Dm644 ${srcdir}/${_basedir}/COPYING.RUNTIME \
+    ${pkgdir}/usr/share/licenses/lib32-gcc-libs/RUNTIME.LIBRARY.EXCEPTION
 }
