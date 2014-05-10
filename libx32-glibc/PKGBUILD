@@ -19,7 +19,7 @@ makedepends=('gcc-multilib-x32>=4.7')
 conflicts=('glibc-x32-seed')
 provides=('glibc-x32-seed')
 options=('!strip' '!emptydirs' 'staticlibs')
-source=(http://ftp.gnu.org/gnu/libc/${_pkgbasename}-${pkgver}.tar.xz{,.sig}
+source=(http://ftp.gnu.org/gnu/libc/${_pkgbasename}-${pkgver%_*}.tar.xz{,.sig}
         glibc-2.19-xattr_header.patch
         glibc-2.19-fix-sign-in-bsloww1-input.patch
         libx32-glibc.conf)
