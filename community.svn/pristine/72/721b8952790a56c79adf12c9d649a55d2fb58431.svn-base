@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 108849 2014-04-05 08:08:31Z bluewind $
+# $Id$
 # Maintainer: Tobias Powalowski <tpowa@archlinux.org>
 _pkgbasename=keyutils
 pkgname=lib32-$_pkgbasename
