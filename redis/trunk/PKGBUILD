@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 79038 2012-10-29 14:31:32Z spupykin $
+# $Id: PKGBUILD 109954 2014-04-22 14:53:31Z spupykin $
 # Maintainer: Sergej Pupykin <pupykin.s+arch@gmail.com>
 # Maintainer: Jan-Erik Rediger <badboy at archlinux dot us>
 # Contributor: nofxx <x@<nick>.com>
 
 pkgname=redis
-pkgver=2.6.2
+pkgver=2.8.9
 pkgrel=1
 pkgdesc="Advanced key-value store"
 arch=('i686' 'x86_64')
@@ -14,18 +14,28 @@ depends=('bash')
 makedepends=('gcc>=3.1' 'make' 'pkgconfig')
 backup=("etc/redis.conf"
 	"etc/logrotate.d/redis")
-source=("http://redis.googlecode.com/files/${pkgname}-${pkgver}.tar.gz"
-	"redis.d"
+install=redis.install
+source=("http://download.redis.io/releases/redis-$pkgver.tar.gz"
 	"redis.service"
-	"redis.logrotate")
-md5sums=('4f788dfb3ee86c7e864dfe537870bb5a'
-         '8d843919d9f165e9a47e56cadb4ac2ed'
-         '5ab9fdb200e15c13b450fda77fa030b6'
-         '9e2d75b7a9dc421122d673fe520ef17f')
+	"redis.logrotate"
+	"redis.tmpfiles.d")
+md5sums=('3c106b0f1128dc930684e2da88b2a03d'
+         '5320aa6d0f31aadc1d6202ca40425aea'
+         '9e2d75b7a9dc421122d673fe520ef17f'
+         'dd9ab8022b4d963b2e5899170dfff490')
+
+prepare() {
+  cd "$srcdir/${pkgname}-${pkgver}"
+  sed -i 's|# bind 127.0.0.1|bind 127.0.0.1|' redis.conf
+  sed -i 's|daemonize no|daemonize yes|' redis.conf
+  sed -i 's|dir \./|dir /var/lib/redis/|' redis.conf
+  sed -i 's|pidfile .*|pidfile /run/redis/redis.pid|' redis.conf
+  sed -i 's|logfile stdout|logfile /var/log/redis.log|' redis.conf
+}
 
 build() {
   cd "$srcdir/${pkgname}-${pkgver}"
-  make MALLOC=libc
+  make
 }
 
 package() {
@@ -33,10 +43,9 @@ package() {
   mkdir -p $pkgdir/usr/bin
   make INSTALL_BIN="$pkgdir/usr/bin" PREFIX=/usr install
 
-  install -D -m755 "$srcdir/${pkgname}-${pkgver}/COPYING" "$pkgdir/usr/share/licenses/redis/COPYING"
-  install -D -m755 "$srcdir/redis.d" "$pkgdir/etc/rc.d/redis"
+  install -Dm755 "$srcdir/${pkgname}-${pkgver}/COPYING" "$pkgdir/usr/share/licenses/redis/COPYING"
   install -Dm644 "$srcdir"/redis.service "$pkgdir"/usr/lib/systemd/system/redis.service
   install -Dm644 "$srcdir/redis.logrotate" "$pkgdir/etc/logrotate.d/redis"
-  sed -i 's|daemonize no|daemonize yes|;s|dir \./|dir /var/lib/redis/|;s|logfile stdout|logfile /var/log/redis.log| ' $srcdir/${pkgname}-${pkgver}/redis.conf
-  install -D -m644 "$srcdir/${pkgname}-${pkgver}/redis.conf" "$pkgdir/etc/redis.conf"
+  install -Dm644 "$srcdir/${pkgname}-${pkgver}/redis.conf" "$pkgdir/etc/redis.conf"
+  install -Dm644 "$srcdir/redis.tmpfiles.d" "$pkgdir/usr/lib/tmpfiles.d/redis.conf"
 }
