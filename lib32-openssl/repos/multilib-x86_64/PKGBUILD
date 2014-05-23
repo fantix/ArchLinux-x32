@@ -1,9 +1,9 @@
-# $Id: PKGBUILD 70629 2012-05-13 11:43:00Z bluewind $
+# $Id: PKGBUILD 108954 2014-04-08 03:49:40Z pierre $
 # Maintainer: Pierre Schmitz <pierre@archlinux.de>
 
 _pkgbasename=openssl
 pkgname=lib32-$_pkgbasename
-_ver=1.0.1c
+_ver=1.0.1g
 # use a pacman compatible version scheme
 pkgver=${_ver/[a-z]/.${_ver//[0-9.]/}}
 #pkgver=$_ver
@@ -20,29 +20,32 @@ source=("https://www.openssl.org/source/${_pkgbasename}-${_ver}.tar.gz"
         "https://www.openssl.org/source/${_pkgbasename}-${_ver}.tar.gz.asc"
         'no-rpath.patch'
         'ca-dir.patch')
-md5sums=('ae412727c8c15b67880aef7bd2999b2e'
-         'a3d90bc42253def61cd1c4237f1ce5f7'
+md5sums=('de62b43dfcd858e66a74bee1c834e959'
+         'SKIP'
          'dc78d3d06baffc16217519242ce92478'
          '3bf51be3a1bbd262be46dc619f92aa90')
 
-build() {
-	export CC="gcc -m32"
-	export CXX="g++ -m32"
-	export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-
+prepare() {
 	cd $srcdir/$_pkgbasename-$_ver
 
 	# remove rpath: http://bugs.archlinux.org/task/14367
 	patch -p0 -i $srcdir/no-rpath.patch
 	# set ca dir to /etc/ssl by default
 	patch -p0 -i $srcdir/ca-dir.patch
+}
+
+build() {
+ 	export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+	cd $srcdir/$_pkgbasename-$_ver
+
 	# mark stack as non-executable: http://bugs.archlinux.org/task/12434
-	# workaround for PR#2771: OPENSSL_NO_TLS1_2_CLIENT
 	./Configure --prefix=/usr --openssldir=/etc/ssl --libdir=lib32 \
-		shared zlib enable-md2 \
+		shared zlib \
 		linux-elf \
-		-Wa,--noexecstack "${CFLAGS}" "${LDFLAGS}" \
-		-DOPENSSL_NO_TLS1_2_CLIENT
+		"-Wa,--noexecstack ${CPPFLAGS} ${CFLAGS} ${LDFLAGS}"
 
 	make MAKEDEPPROG="${CC}" depend
 	make
@@ -59,9 +62,9 @@ check() {
 
 package() {
 	cd $srcdir/$_pkgbasename-$_ver
-	make INSTALL_PREFIX=$pkgdir install
+	make INSTALL_PREFIX=$pkgdir install_sw
 
-	rm -rf ${pkgdir}/{usr/{include,share,bin},etc}
+	rm -rf ${pkgdir}/{usr/{include,bin},etc}
 	mkdir -p $pkgdir/usr/share/licenses
 	ln -s $_pkgbasename $pkgdir/usr/share/licenses/$pkgname
 }
