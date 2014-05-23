@@ -1,4 +1,6 @@
 # Maintainer: Bill Fraser <wfraser@codewise.org>
+# Contributor: Felipe Contreras <felipe.contreras@gmail.com>
+# Contributor: jtts
 #
 # From flex's PKGBUILD:
 #   Maintainer: Allan McRae <allan@archlinux.org>
@@ -6,26 +8,21 @@
 
 _pkgbasename=flex
 pkgname=lib32-flex
-pkgver=2.5.35
-pkgrel=4
+pkgver=2.5.39
+pkgrel=1
 pkgdesc="A tool for generating text-scanning programs"
 arch=('x86_64')
 url="http://flex.sourceforge.net"
 license=('custom')
 groups=('base-devel')
 depends=('lib32-glibc' 'm4' 'sh' $_pkgbasename)
+options=(libtool staticlibs)
 source=(http://downloads.sourceforge.net/sourceforge/flex/flex-$pkgver.tar.bz2 
-        flex-2.5.35-gcc44.patch
-        flex-2.5.35-hardening.patch
-        flex-2.5.35-missing-prototypes.patch
-        flex-2.5.35-sign.patch
+        flex-2.5.38-no-bison.patch
         lex.sh)
-md5sums=('10714e50cea54dc7a227e3eddcd44d57'
-         'e4444ef5c07db71a43280be74139bdea'
-         'de952b3ed7cc074bc8c3e6ab73634048'
-         '6b83f56b1b654c6a321cdc530a3ec68d'
-         'd87fd9e9762ba7e230d516bdcf1c8c6f'
-         'f725259ec23a9e87ee29e2ef82eda9a5')
+sha256sums=('add2b55f3bc38cb512b48fad7d72f43b11ef244487ff25fc00aabec1e32b617f'
+            '5ee23f97533c991b82e2aadc06d4682d7d05d99ee2abaf1ef9a82225ba9d0858'
+            '9d03016a7c4ae1adb051f50f94407b3d7dee9d55924b5c1904261c9f0c1f86f6')
 
 build() {
   export CC="gcc -m32"
@@ -35,10 +32,12 @@ build() {
 
   cd $srcdir/$_pkgbasename-$pkgver
 
-  patch -Np1 -i $srcdir/flex-2.5.35-gcc44.patch
-  patch -Np1 -i $srcdir/flex-2.5.35-hardening.patch
-  patch -Np1 -i $srcdir/flex-2.5.35-missing-prototypes.patch
-  patch -Np1 -i $srcdir/flex-2.5.35-sign.patch
+# These are no longer needed!
+#  patch -Np1 -i $srcdir/flex-2.5.35-gcc44.patch
+#  patch -Np1 -i $srcdir/flex-2.5.35-hardening.patch
+#  patch -Np1 -i $srcdir/flex-2.5.35-missing-prototypes.patch
+
+  patch -Np1 -i $srcdir/flex-2.5.38-no-bison.patch
 
   ./configure --prefix=/usr --libdir=/usr/lib32 \
     --mandir=/usr/share/man --infodir=/usr/share/info
@@ -64,4 +63,3 @@ package() {
   mkdir -p $pkgdir/usr/share/licenses
   ln -s $_pkgbasename "$pkgdir/usr/share/licenses/$pkgname"
 }
-
