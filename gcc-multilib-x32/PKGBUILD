@@ -38,6 +38,13 @@ fi
 _libdir="usr/lib/gcc/$CHOST/${pkgver%_*}"
 
 prepare() {
+  if [ ! `zgrep CONFIG_X86_X32=y /proc/config.gz` ]; then
+    error "Your current kernel doesn't support X32 ABI!"
+    msg2 "You need to install a kernel with CONFIG_X86_X32=y"
+    msg2 "linux-pf from AUR for example supports X32 ABI"
+    exit 1
+  fi
+
   cd ${srcdir}/${_basedir}
 
   # Do not run fixincludes
@@ -300,13 +307,14 @@ package_gcc-fortran-multilib-x32()
 {
   pkgdesc="Fortran front-end for GCC for multilib with x32 ABI support"
   depends=("gcc-multilib-x32=$pkgver-$pkgrel")
-  provides=("gcc-fortran=${pkgver//_/-}")
+  provides=("gcc-fortran=${pkgver//_/-}" "gcc-fortran-multilib=${pkgver//_/-}")
   conflicts=('gcc-fortran')
   options=('staticlibs' '!emptydirs')
   install=gcc-fortran.install
 
   cd ${srcdir}/gcc-build
   make -C $CHOST/libgfortran DESTDIR=$pkgdir install-{{caf,my}execlibLTLIBRARIES,toolexeclibDATA}
+  make -C $CHOST/32/libgfortran DESTDIR=$pkgdir install-{{caf,my}execlibLTLIBRARIES,toolexeclibDATA}
   make -C $CHOST/x32/libgfortran DESTDIR=$pkgdir install-{{caf,my}execlibLTLIBRARIES,toolexeclibDATA}
   make -C $CHOST/libgomp DESTDIR=$pkgdir install-nodist_fincludeHEADERS
   make -C gcc DESTDIR=$pkgdir fortran.install-{common,man,info}
@@ -323,7 +331,7 @@ package_gcc-objc-multilib-x32()
 {
   pkgdesc="Objective-C front-end for GCC for multilib with x32 ABI support"
   depends=("gcc-multilib-x32=$pkgver-$pkgrel")
-  provides=("gcc-objc=${pkgver//_/-}")
+  provides=("gcc-objc=${pkgver//_/-}" "gcc-objc-multilib=${pkgver//_/-}")
   conflicts=('gcc-objc')
 
   cd ${srcdir}/gcc-build
@@ -340,7 +348,7 @@ package_gcc-ada-multilib-x32()
 {
   pkgdesc="Ada front-end for GCC (GNAT) for multilib with x32 ABI support"
   depends=("gcc-multilib-x32=$pkgver-$pkgrel")
-  provides=("gcc-ada=${pkgver//_/-}")
+  provides=("gcc-ada=${pkgver//_/-}" "gcc-ada-multilib=${pkgver//_/-}")
   conflicts=('gcc-ada')
   options=('staticlibs' '!emptydirs')
   install=gcc-ada.install
@@ -349,7 +357,11 @@ package_gcc-ada-multilib-x32()
   make DESTDIR=$pkgdir ada.install-{common,info}
   install -m755 gnat1 $pkgdir/${_libdir}
 
-  cd ../$CHOST/x32/libada
+  cd ${srcdir}/gcc-build/$CHOST/32/libada
+  make DESTDIR=${pkgdir} INSTALL="install" \
+    INSTALL_DATA="install -m644" install-gnatlib
+
+  cd ${srcdir}/gcc-build/$CHOST/x32/libada
   make DESTDIR=${pkgdir} INSTALL="install" \
     INSTALL_DATA="install -m644" install-gnatlib
 
@@ -360,6 +372,12 @@ package_gcc-ada-multilib-x32()
   ln -s libgnarl-${_pkgver}.so ${pkgdir}/usr/lib/libgnarl.so
   ln -s libgnat-${_pkgver}.so ${pkgdir}/usr/lib/libgnat.so
   rm ${pkgdir}/${_libdir}/adalib/libgna{rl,t}.so
+
+  install -d ${pkgdir}/usr/lib32/
+  mv ${pkgdir}/${_libdir}/32/adalib/libgna{rl,t}-${_pkgver}.so ${pkgdir}/usr/lib32
+  ln -s libgnarl-${_pkgver}.so ${pkgdir}/usr/lib32/libgnarl.so
+  ln -s libgnat-${_pkgver}.so ${pkgdir}/usr/lib32/libgnat.so
+  rm ${pkgdir}/${_libdir}/32/adalib/libgna{rl,t}.so
 
   install -d ${pkgdir}/usr/libx32/
   mv ${pkgdir}/${_libdir}/x32/adalib/libgna{rl,t}-${_pkgver}.so ${pkgdir}/usr/libx32
@@ -376,18 +394,19 @@ package_gcc-go-multilib-x32()
 {
   pkgdesc="Go front-end for GCC for multilib with x32 ABI support"
   depends=("gcc-multilib-x32=$pkgver-$pkgrel")
-  provides=("gcc-go=${pkgver//_/-}")
+  provides=("gcc-go=${pkgver//_/-}" "gcc-go-multilib=${pkgver//_/-}")
   conflicts=('gcc-go')
   options=('staticlibs' '!emptydirs')
   install=gcc-go.install
 
   cd ${srcdir}/gcc-build
   make -C $CHOST/libgo DESTDIR=$pkgdir install-exec-am
+  make -C $CHOST/32/libgo DESTDIR=$pkgdir install-exec-am
   make -C $CHOST/x32/libgo DESTDIR=$pkgdir install-exec-am
   make -C gcc DESTDIR=$pkgdir go.install-{common,man,info}
   install -Dm755 gcc/go1 $pkgdir/${_libdir}/go1
 
-  rm $pkgdir/usr/lib{,x32}/libgo.a
+  rm $pkgdir/usr/lib{,32,x32}/libgo.a
 
   # Install Runtime Library Exception
   install -d ${pkgdir}/usr/share/licenses/gcc-go-multilib-x32/
