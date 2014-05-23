@@ -12,7 +12,7 @@ arch=('x86_64')
 url="http://web.mit.edu/kerberos/"
 license=('custom')
 depends=('libx32-e2fsprogs' 'libx32-libldap' 'libx32-keyutils' "$_pkgbasename")
-makedepends=('perl' 'gcc-multilib-x32')
+makedepends=('perl' 'gcc-multilib-x32' 'bison')
 source=("http://web.mit.edu/kerberos/dist/${_pkgbasename}/1.12/${_pkgbasename}-${pkgver}-signed.tar"
         krb5-config_LDFLAGS.patch)
 sha1sums=('d59e8dc0fc9e1890e109cd033756539984e3d3fe'
