@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 87137 2013-03-27 22:21:38Z lcarlier $
+# $Id$
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 pkgname=lib32-libffi
