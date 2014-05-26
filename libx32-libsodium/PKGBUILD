@@ -1,40 +1,42 @@
 # $Id: PKGBUILD 111109 2014-05-14 03:36:42Z fyan $
-# Maintainer: Felix Yan <felixonmars@gmail.com>
+# Upstream Maintainer: Felix Yan <felixonmars@gmail.com>
 # Contributor: namelessjon <jonathan.stott@gmail.com>
 # Contributor: Alessio Sergi <asergi at archlinux dot us>
+# Maintainer: Fantix King <fantix.king at gmail.com>
 
-pkgname=libsodium
+_pkgbasename=libsodium
+pkgname=libx32-libsodium
 pkgver=0.5.0
 pkgrel=1
-pkgdesc="P(ortable|ackageable) NaCl-based crypto library"
-arch=('i686' 'x86_64')
+pkgdesc="P(ortable|ackageable) NaCl-based crypto library (x32 ABI)"
+arch=('x86_64')
 url="https://github.com/jedisct1/libsodium"
 license=('custom:ISC')
-depends=('glibc')
-makedepends=('clang')
-source=(http://download.dnscrypt.org/$pkgname/releases/$pkgname-${pkgver}.tar.gz)
+depends=('libx32-glibc')
+makedepends=('libx32-clang')
+source=(http://download.dnscrypt.org/$_pkgbasename/releases/$_pkgbasename-${pkgver}.tar.gz)
 
 build() {
-  cd "$pkgname-$pkgver"
-  export CC=clang
+  cd "$_pkgbasename-$pkgver"
+  export CC=clang -mx32
   CFLAGS=${CFLAGS/-fstack-protector-strong/}
 
-  ./configure --prefix=/usr
+  ./configure --prefix=/usr --libdir=/usr/libx32
   make
 }
 
 check() {
-  cd "$pkgname-$pkgver"
+  cd "$_pkgbasename-$pkgver"
   make check
 }
 
 package() {
-  cd "$pkgname-$pkgver"
+  cd "$_pkgbasename-$pkgver"
   make DESTDIR="$pkgdir" install
 
   # install license
-  install -d -m 755 "$pkgdir/usr/share/licenses/$pkgname"
-  install -m 644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  mkdir -p "$pkgdir/usr/share/licenses"
+  ln -s $_pkgbasename "$pkgdir/usr/share/licenses/$pkgname"
 }
 
 # vim:set ts=2 sw=2 et:
