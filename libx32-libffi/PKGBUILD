@@ -24,7 +24,7 @@ build() {
 
   ./configure --prefix=/usr \
     --libdir=/usr/libx32 --libexecdir=/usr/libx32 \
-    --disable-static
+    --disable-static --host=x86_64-unknown-linux-gnux32
 
   make
 }
