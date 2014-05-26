@@ -1,5 +1,5 @@
-# $Id: PKGBUILD 111218 2014-05-15 14:28:48Z lcarlier $
-# Upstream Maintainer: Evangelos Foutras <foutrelis@gmail.com>
+# $Id$
+# Maintainer: Evangelos Foutras <foutrelis@gmail.com>
 # Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
 # Contributor: Sebastian Nowicki <sebnow@gmail.com>
 # Contributor: Devin Cofer <ranguvar{AT]archlinux[DOT}us>
@@ -8,17 +8,15 @@
 # Contributor: Tomas Lindquist Olsen <tomas@famolsen.dk>
 # Contributor: Roberto Alsina <ralsina@kde.org>
 # Contributor: Gerardo Exequiel Pozzi <vmlinuz386@yahoo.com.ar>
-# Maintainer: Fantix King <fantix.king at gmail.com>
 
-pkgname=('libx32-llvm')
-true && pkgname=('libx32-llvm' 'libx32-llvm-libs')
+pkgname=('lib32-llvm' 'lib32-llvm-libs')
 pkgver=3.4.1
 _base_ver=3.4
 pkgrel=1
 arch=('x86_64')
 url="http://llvm.org/"
 license=('custom:University of Illinois/NCSA Open Source License')
-makedepends=('libx32-libffi' 'libx32-zlib' 'python2' 'gcc-multilib-x32')
+makedepends=('lib32-libffi' 'lib32-zlib' 'python2' 'gcc-multilib')
 options=('staticlibs')
 source=(http://llvm.org/releases/$pkgver/llvm-$pkgver.src.tar.gz{,.sig}
         http://llvm.org/releases/$_base_ver/compiler-rt-$_base_ver.src.tar.gz{,.sig})
@@ -40,12 +38,12 @@ prepare() {
   mv "$srcdir/compiler-rt-$_base_ver" projects/compiler-rt
 
   # Fix installation directories, ./configure doesn't seem to set them right
-  sed -i -e 's:\$(PROJ_prefix)/lib:$(PROJ_prefix)/libx32:' \
+  sed -i -e 's:\$(PROJ_prefix)/lib:$(PROJ_prefix)/lib32:' \
          -e 's:\$(PROJ_prefix)/docs/llvm:$(PROJ_prefix)/share/doc/llvm:' \
     Makefile.config.in
-  sed -i '/ActiveLibDir = ActivePrefix/s:lib:libx32:' \
+  sed -i '/ActiveLibDir = ActivePrefix/s:lib:lib32:' \
     tools/llvm-config/llvm-config.cpp
-  sed -i 's:LLVM_LIBDIR="${prefix}/lib":LLVM_LIBDIR="${prefix}/libx32":' \
+  sed -i 's:LLVM_LIBDIR="${prefix}/lib":LLVM_LIBDIR="${prefix}/lib32":' \
     autoconf/configure.ac \
     configure
 }
@@ -53,9 +51,9 @@ prepare() {
 build() {
   cd "$srcdir/llvm-$pkgver"
 
-  export CC="gcc -mx32"
-  export CXX="g++ -mx32"
-  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
+  export CC="gcc -m32"
+  export CXX="g++ -m32"
+  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 
   # Apply strip option to configure
   _optimized_switch="enable"
@@ -69,7 +67,7 @@ build() {
 
   ./configure \
     --prefix=/usr \
-    --libdir=/usr/libx32 \
+    --libdir=/usr/lib32 \
     --sysconfdir=/etc \
     --enable-shared \
     --enable-libffi \
@@ -86,52 +84,52 @@ build() {
   make REQUIRES_RTTI=1
 }
 
-package_libx32-llvm() {
-  pkgdesc="Low Level Virtual Machine (x32 ABI)"
-  depends=('libx32-llvm-libs' 'llvm')
+package_lib32-llvm() {
+  pkgdesc="Low Level Virtual Machine (32-bit)"
+  depends=('lib32-llvm-libs' 'llvm')
 
   cd "$srcdir/llvm-$pkgver"
 
   make DESTDIR="$pkgdir" install
 
-  # The runtime library goes into libx32-llvm-libs
-  mv "$pkgdir/usr/libx32/libLLVM-$pkgver.so" "$srcdir"
-  rm "$pkgdir/usr/libx32/libLLVM-$_base_ver.so"
+  # The runtime library goes into lib32-llvm-libs
+  mv "$pkgdir/usr/lib32/libLLVM-$pkgver.so" "$srcdir"
+  rm "$pkgdir/usr/lib32/libLLVM-$_base_ver.so"
 
   # Fix permissions of static libs
-  chmod -x "$pkgdir"/usr/libx32/*.a
+  chmod -x "$pkgdir"/usr/lib32/*.a
 
-  mv "$pkgdir/usr/bin/i386-pc-linux-gnu-llvm-config" "$pkgdir/usr/libx32/llvm-config"
+  mv "$pkgdir/usr/bin/i386-pc-linux-gnu-llvm-config" "$pkgdir/usr/lib32/llvm-config"
 
   # Get rid of example Hello transformation
-  rm "$pkgdir"/usr/libx32/*LLVMHello.*
+  rm "$pkgdir"/usr/lib32/*LLVMHello.*
 
   # Symlink LLVMgold.so into /usr/lib/bfd-plugins
   # (https://bugs.archlinux.org/task/28479)
-  install -d "$pkgdir/usr/libx32/bfd-plugins"
-  ln -s ../LLVMgold.so "$pkgdir/usr/libx32/bfd-plugins/LLVMgold.so"
+  install -d "$pkgdir/usr/lib32/bfd-plugins"
+  ln -s ../LLVMgold.so "$pkgdir/usr/lib32/bfd-plugins/LLVMgold.so"
 
   mv "$pkgdir"/usr/include/llvm/Config/*config.h "$pkgdir/"
   rm -rf "$pkgdir"/usr/{bin,include,share/{doc,man}}
 
   install -d "$pkgdir/usr/include/llvm/Config"
-  mv "$pkgdir/config.h" "$pkgdir/usr/include/llvm/Config/config-x32.h"
-  mv "$pkgdir/llvm-config.h" "$pkgdir/usr/include/llvm/Config/llvm-config-x32.h"
+  mv "$pkgdir/config.h" "$pkgdir/usr/include/llvm/Config/config-32.h"
+  mv "$pkgdir/llvm-config.h" "$pkgdir/usr/include/llvm/Config/llvm-config-32.h"
 
   mkdir "$pkgdir"/usr/bin
-  mv "$pkgdir/usr/libx32/llvm-config" "$pkgdir/usr/bin/llvm-configx32"
+  mv "$pkgdir/usr/lib32/llvm-config" "$pkgdir/usr/bin/llvm-config32"
 
   install -Dm644 LICENSE.TXT "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
 
-package_libx32-llvm-libs() {
-  pkgdesc="Low Level Virtual Machine (runtime library)(x32 ABI) "
-  depends=('libx32-libffi' 'libx32-zlib' 'libx32-gcc-libs')
+package_lib32-llvm-libs() {
+  pkgdesc="Low Level Virtual Machine (runtime library)(32-bit) "
+  depends=('lib32-libffi' 'lib32-zlib' 'lib32-gcc-libs')
 
   cd "$srcdir"
 
-  install -D libLLVM-$pkgver.so "$pkgdir/usr/libx32/libLLVM-$pkgver.so"
-  ln -s libLLVM-$pkgver.so "$pkgdir/usr/libx32/libLLVM-$_base_ver.so"
+  install -D libLLVM-$pkgver.so "$pkgdir/usr/lib32/libLLVM-$pkgver.so"
+  ln -s libLLVM-$pkgver.so "$pkgdir/usr/lib32/libLLVM-$_base_ver.so"
 
   install -Dm644 llvm-$pkgver/LICENSE.TXT "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
