@@ -1,17 +1,16 @@
-# $Id: PKGBUILD 115614 2014-07-12 17:33:50Z fyan $
+# $Id$
 # Contributor: Jan de Groot <jgc@archlinux.org>
-# x32 Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=libxdmcp
-pkgname=libx32-$_pkgbasename
+pkgname=lib32-$_pkgbasename
 pkgver=1.1.1
 pkgrel=2
-pkgdesc="X11 Display Manager Control Protocol library (x32 ABI)"
+pkgdesc="X11 Display Manager Control Protocol library (32-bit)"
 arch=(x86_64)
 url="http://xorg.freedesktop.org/"
 license=('custom')
-depends=('libx32-glibc' $_pkgbasename)
-makedepends=('xorg-util-macros' 'gcc-multilib-x32')
+depends=('lib32-glibc' $_pkgbasename)
+makedepends=('xorg-util-macros' 'gcc-multilib')
 options=('!libtool')
 source=(${url}/releases/individual/lib/libXdmcp-${pkgver}.tar.bz2)
 sha1sums=('3b63e8fc1600c51d9897d017da190fc6c16245b6')
@@ -19,11 +18,11 @@ sha1sums=('3b63e8fc1600c51d9897d017da190fc6c16245b6')
 build() {
   cd ${srcdir}/libXdmcp-${pkgver}
 
-  export CC="gcc -mx32"
-  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
+  export CC="gcc -m32"
+  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 
   ./configure --prefix=/usr --sysconfdir=/etc --disable-static \
-              --libdir=/usr/libx32
+              --libdir=/usr/lib32
   make
 }
 
