@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 91755 2013-05-27 09:10:06Z bluewind $
+# $Id$
 # Maintainer: Alexander Baldeck <alexander@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 _pkgbasename=libxau
