@@ -1,17 +1,16 @@
-# $Id: PKGBUILD 115638 2014-07-13 07:05:40Z lcarlier $
+# $Id$
 # Maintainer: Alexander Baldeck <alexander@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
-# x32 Maintainer: Fantix King <fantix.king at gmail.com>
 
 _pkgbasename=libxcb
-pkgname=libx32-$_pkgbasename
+pkgname=lib32-$_pkgbasename
 pkgver=1.10
 pkgrel=3
-pkgdesc="X11 client-side library (x32 ABI)"
+pkgdesc="X11 client-side library (32-bit)"
 arch=(x86_64)
 url="http://xcb.freedesktop.org/"
-depends=('libx32-libxdmcp' 'libx32-libxau' $_pkgbasename)
-makedepends=('pkgconfig' 'libx32-libxslt' 'python' 'gcc-multilib-x32'
+depends=('lib32-libxdmcp' 'lib32-libxau' $_pkgbasename)
+makedepends=('pkgconfig' 'libxslt' 'python' 'gcc-multilib'
              'autoconf')
 license=('custom')
 source=(${url}/dist/${_pkgbasename}-${pkgver}.tar.bz2
@@ -38,14 +37,14 @@ prepare() {
 build() {
   cd "${srcdir}/${_pkgbasename}-${pkgver}"
 
-  export CC="gcc -mx32"
-  export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
+  export CC="gcc -m32"
+  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 
   ./autogen.sh \
 	  --prefix=/usr \
 	  --enable-xinput \
           --enable-xkb \
-	  --libdir=/usr/libx32 \
+	  --libdir=/usr/lib32 \
 	  --disable-static
   make
 }
