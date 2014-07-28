@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 115436 2014-07-11 10:22:04Z bluewind $
+# $Id$
 
 _pkgbasename=expat
 pkgname=lib32-${_pkgbasename}
