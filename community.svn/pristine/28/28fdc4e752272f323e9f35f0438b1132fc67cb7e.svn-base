@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 106864 2014-03-09 12:49:17Z bpiotrowski $
+# $Id$
 # Maintainer: Andreas Radke <andyrtr@archlinux.org>
 
 _pkgbasename=libgcrypt
