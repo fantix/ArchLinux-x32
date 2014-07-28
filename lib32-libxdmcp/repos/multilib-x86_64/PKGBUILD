@@ -1,10 +1,10 @@
-# $Id: PKGBUILD 68119 2012-03-18 14:10:22Z lcarlier $
+# $Id: PKGBUILD 115615 2014-07-12 17:34:08Z fyan $
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libxdmcp
 pkgname=lib32-$_pkgbasename
 pkgver=1.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="X11 Display Manager Control Protocol library (32-bit)"
 arch=(x86_64)
 url="http://xorg.freedesktop.org/"
