@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 92733 2013-06-14 06:38:13Z lcarlier $
+# $Id$
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libxrender
