@@ -22,7 +22,7 @@ build() {
   export CXX="g++ -mx32"
   export PKG_CONFIG_PATH="/usr/libx32/pkgconfig"
 
-  ./configure --prefix=/usr --mandir=/usr/share/man --enable-threads --disable-rpath #--enable-64bit
+  ./configure --prefix=/usr --mandir=/usr/share/man --enable-threads --libdir=/usr/libx32 --disable-rpath
 
   # http://cblfs.cross-lfs.org/index.php/Tk
   sed -i 's@/lib/@/libx32/@' Makefile
@@ -38,7 +38,8 @@ check() {
 package() {
   cd tk${pkgver}/unix
   make INSTALL_ROOT="${pkgdir}" install install-private-headers
-  ln -sf wish${pkgver%.*} "${pkgdir}/usr/bin/wish-x32"
+  mv ${pkgdir}/usr/bin/wish${pkgver%.*} ${pkgdir}/usr/bin/wish${pkgver%.*}-x32
+  ln -sf wish${pkgver%.*}-x32 "${pkgdir}/usr/bin/wish-x32"
   ln -sf libtk${pkgver%.*}.so "${pkgdir}/usr/libx32/libtk.so"
 
   # remove duplicate include and manual files
