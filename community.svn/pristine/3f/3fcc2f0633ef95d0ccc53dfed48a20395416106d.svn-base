@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 97277 2013-09-16 07:35:08Z bluewind $
+# $Id$
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libx11
