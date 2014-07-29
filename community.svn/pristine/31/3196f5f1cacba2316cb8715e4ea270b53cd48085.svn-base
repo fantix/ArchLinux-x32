@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 112796 2014-06-07 12:09:07Z bluewind $
+# $Id$
 # Maintainer: judd <jvinet@zeroflux.org>
 
 _pkgbasename=libgpg-error
