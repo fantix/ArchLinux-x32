@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 112785 2014-06-07 11:59:09Z bluewind $
+# $Id$
 # Maintainer: Ionut Biru <ibiru@archlinux.org>
 _pkgbasename=libxft
 pkgname=lib32-$_pkgbasename
