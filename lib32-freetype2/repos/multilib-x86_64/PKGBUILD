@@ -1,24 +1,31 @@
-# $Id: PKGBUILD 72526 2012-06-16 10:07:26Z bluewind $
+# $Id: PKGBUILD 107113 2014-03-12 16:52:48Z bluewind $
 # Maintainer: Ionut Biru <ibiru@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=freetype2
 pkgname=lib32-$_pkgbasename
-pkgver=2.4.10
+pkgver=2.5.3
 pkgrel=1
 pkgdesc="TrueType font rendering library (32-bit)"
 arch=(x86_64)
 license=('GPL')
 url="http://freetype.sourceforge.net"
-depends=('lib32-zlib' 'lib32-bzip2' $_pkgbasename)
+depends=('lib32-zlib' 'lib32-bzip2' 'lib32-libpng' 'lib32-harfbuzz' $_pkgbasename)
 makedepends=(gcc-multilib)
 options=('!libtool')
-source=(http://downloads.sourceforge.net/sourceforge/freetype/freetype-${pkgver}.tar.bz2
-        freetype-2.3.0-enable-spr.patch
+source=(http://downloads.sourceforge.net/sourceforge/freetype/freetype-${pkgver}.tar.bz2{,.sig}
+        freetype-2.5.1-enable-spr.patch
         freetype-2.2.1-enable-valid.patch)
-md5sums=('13286702e9390a91661f980608adaff1'
-         '816dc8619a6904a7385769433c0a8653'
+md5sums=('d6b60f06bfc046e43ab2a6cbfd171d65'
+         'SKIP'
+         '80a14cce234f3f190cd936ca9060c398'
          '214119610444c9b02766ccee5e220680')
+
+prepare() {
+  cd "${srcdir}/freetype-${pkgver}"
+  patch -Np1 -i "${srcdir}/freetype-2.5.1-enable-spr.patch"
+  patch -Np1 -i "${srcdir}/freetype-2.2.1-enable-valid.patch"
+}
 
 build() {
   export CC="gcc -m32"
@@ -26,8 +33,6 @@ build() {
   export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 
   cd "${srcdir}/freetype-${pkgver}"
-  patch -Np1 -i "${srcdir}/freetype-2.3.0-enable-spr.patch"
-  patch -Np1 -i "${srcdir}/freetype-2.2.1-enable-valid.patch"
 
   ./configure --prefix=/usr --libdir=/usr/lib32
   make
