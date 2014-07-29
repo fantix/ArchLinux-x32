@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 197364 2013-10-25 02:55:42Z allan $
+# $Id$
 # Maintainer: Eric Bélanger <eric@archlinux.org>
 
 pkgname=tk
