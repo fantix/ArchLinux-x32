@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 78820 2012-10-25 06:47:28Z foutrelis $
+# $Id: PKGBUILD 114599 2014-07-02 07:47:19Z bluewind $
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 # Contributor: dorphell <dorphell@archlinux.org>
 # Contributor: Travis Willard <travis@archlinux.org>
@@ -6,9 +6,9 @@
 
 _pkgbasename=libpng
 pkgname=lib32-$_pkgbasename
-pkgver=1.5.13
-_apngver=1.5.13
-_libversion=15
+pkgver=1.6.12
+_apngver=1.6.12
+_libversion=16
 pkgrel=1
 pkgdesc="A collection of routines used to create PNG format graphics files (32-bit)"
 arch=('x86_64')
@@ -17,10 +17,11 @@ license=('custom')
 depends=('lib32-zlib' $_pkgbasename)
 makedepends=(gcc-multilib)
 options=('!libtool')
-source=("http://downloads.sourceforge.net/sourceforge/${_pkgbasename}/${_pkgbasename}-${pkgver}.tar.xz"
+source=("http://downloads.sourceforge.net/sourceforge/${_pkgbasename}/${_pkgbasename}-${pkgver}.tar.xz"{,.asc}
         "http://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-${_apngver}-apng.patch.gz")
-md5sums=('0b607a685da977f1bfc96e1c47055183'
-         '23c8765aa6ca188c0575386d5ea8fe70')
+md5sums=('ee752da8aa75076500e4cf31318e636e'
+         'SKIP'
+         'f959e8b1cb9876ce946a2701e8aca519')
 
 build() {
   export CC="gcc -m32"
@@ -33,7 +34,7 @@ build() {
   # see http://sourceforge.net/projects/libpng-apng/
   patch -p1 -i "${srcdir}/libpng-${_apngver}-apng.patch"
 
-  ./configure --prefix=/usr --libdir=/usr/lib32 --program-suffix=-32
+  ./configure --prefix=/usr --libdir=/usr/lib32 --program-suffix=-32 --disable-static
   make
 }
 
