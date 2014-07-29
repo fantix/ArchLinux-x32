@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 109541 2014-04-15 14:58:31Z bluewind $
+# $Id$
 # Maintainer: Ionut Biru <ibiru@archlinux.org>
 
 _pkgbasename=pcre
