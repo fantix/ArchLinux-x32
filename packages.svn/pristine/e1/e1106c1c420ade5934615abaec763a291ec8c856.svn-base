@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 197360 2013-10-25 02:54:13Z allan $
+# $Id$
 # Maintainer: Eric Bélanger <eric@archlinux.org>
 
 pkgname=tcl
