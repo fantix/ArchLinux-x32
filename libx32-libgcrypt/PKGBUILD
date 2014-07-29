@@ -16,7 +16,7 @@ source=(ftp://ftp.gnupg.org/gcrypt/${_pkgbasename}/${_pkgbasename}-${pkgver}.tar
   libgcrypt-1.4.5-x32.patch
 )
 sha1sums=('f03d9b63ac3b17a6972fc11150d136925b702f02'
-          '6df87757efcbc17e289680ddaed956c7')
+          '0d23f2f17b9f4f6461abb4f8f5115f9db3143841')
 
 build() {
   export CC="gcc -mx32"
