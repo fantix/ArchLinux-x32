@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 109876 2014-04-20 20:49:18Z bluewind $
+# $Id$
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=fontconfig
