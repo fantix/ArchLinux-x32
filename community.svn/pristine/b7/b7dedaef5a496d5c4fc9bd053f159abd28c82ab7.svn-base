@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 116430 2014-07-27 16:12:15Z bluewind $
+# $Id$
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 _pkgbasename=libxext
