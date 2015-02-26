@@ -1,8 +1,8 @@
-# $Id: PKGBUILD 113591 2014-06-26 09:15:57Z lcarlier $
+# $Id: PKGBUILD 123859 2014-12-13 21:59:27Z thestinger $
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
 pkgname=lib32-libffi
-pkgver=3.1
+pkgver=3.2.1
 pkgrel=1
 pkgdesc="A portable, high level programming interface to various calling conventions (32-bit)"
 arch=('x86_64')
@@ -10,15 +10,8 @@ license=('MIT')
 url="http://sourceware.org/libffi/"
 depends=('lib32-glibc')
 checkdepends=('dejagnu')
-source=(ftp://sourceware.org/pub/libffi/libffi-${pkgver}.tar.gz
-        0001-Fix-paths-in-libffi.pc.in.patch)
-sha1sums=('cb373ef2115ec7c57913b84ca72eee14b10ccdc3'
-          '85b406c5208a7b8fdba9c8a4782ab524f5c5eec4')
-
-prepare() {
-  cd libffi-${pkgver}
-  patch -p1 -i ../0001-Fix-paths-in-libffi.pc.in.patch
-}
+source=(ftp://sourceware.org/pub/libffi/libffi-${pkgver}.tar.gz)
+sha1sums=('280c265b789e041c02e5c97815793dfc283fb1e6')
 
 build() {
   cd libffi-${pkgver}
@@ -27,7 +20,7 @@ build() {
 
   ./configure --prefix=/usr \
     --libdir=/usr/lib32 --libexecdir=/usr/lib32 \
-    --disable-static
+    --disable-static --enable-pax_emutramp
 
   make
 }
