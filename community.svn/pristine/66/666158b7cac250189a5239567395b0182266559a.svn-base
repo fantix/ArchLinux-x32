@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 127459 2015-02-10 07:28:52Z lcarlier $
+# $Id$
 # Maintainer : Ionut Biru <ibiru@archlinux.org>
 
 pkgname=lib32-libdbus
