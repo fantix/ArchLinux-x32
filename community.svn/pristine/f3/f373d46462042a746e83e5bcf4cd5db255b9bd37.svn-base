@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 117894 2014-08-26 08:57:35Z bluewind $
+# $Id$
 # Maintainer: Andreas Radke <andyrtr@archlinux.org>
 
 _pkgbasename=libgcrypt
