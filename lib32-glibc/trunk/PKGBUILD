@@ -1,40 +1,44 @@
-# $Id: PKGBUILD 127583 2015-02-12 00:16:48Z heftig $
+# $Id: PKGBUILD 144552 2015-10-21 09:06:37Z heftig $
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: Allan McRae <allan@archlinux.org>
 
 # toolchain build order: linux-api-headers->glibc->binutils->gcc->binutils->glibc
+# NOTE: valgrind-multilib requires rebuild with each major glibc version
+
 
 _pkgbasename=glibc
 pkgname=lib32-$_pkgbasename
-pkgver=2.21
-pkgrel=2
+pkgver=2.22
+pkgrel=3.1
 pkgdesc="GNU C Library (32-bit)"
 arch=('x86_64')
 url="http://www.gnu.org/software/libc"
 license=('GPL' 'LGPL')
 groups=()
 depends=()
-makedepends=('gcc-multilib>=4.9')
+makedepends=('gcc-multilib>=5.2')
 backup=()
 
 
 options=('!strip' 'staticlibs' '!emptydirs')
 
 source=(http://ftp.gnu.org/gnu/libc/${_pkgbasename}-${pkgver}.tar.xz{,.sig}
-        glibc-2.21-roundup.patch
+        glibc-2.22-roundup.patch
         lib32-glibc.conf)
-md5sums=('9cb398828e8f84f57d1f7d5588cf40cd'
+
+md5sums=('e51e02bf552a0a1fbbdc948fb2f5e83c'
          'SKIP'
-         'bf9d96b11c76b113606aae102da63d9d'
+         'b6b7a0e8d6e6520e40e3164ae773631d'
          '6e052f1cb693d5d3203f50f9d4e8c33b')
+
 validpgpkeys=('F37CDAB708E65EA183FD1AF625EF0A436C2A4AFF')  # Carlos O'Donell
 
 prepare() {
   cd ${srcdir}/glibc-${pkgver}
 
-  # glibc-2.21..75adf430
-  patch -p1 -i $srcdir/glibc-2.21-roundup.patch
+  # glibc-2.21..01b07c70
+  patch -p1 -i $srcdir/glibc-2.22-roundup.patch
 
   mkdir ${srcdir}/glibc-build
 }
@@ -89,23 +93,24 @@ build() {
 }
 
 check() {
-  # the linker commands need to be reordered - fixed in 2.19
-  LDFLAGS=${LDFLAGS/--as-needed,/}
-
   cd ${srcdir}/glibc-build
 
-  # tst-cleanupx4 failure on i686 is "expected"
+  # some failures are "expected"
   make check || true
 }
 
 package() {
   cd ${srcdir}/glibc-build
+
+
+
+
   make install_root=${pkgdir} install
 
   rm -rf ${pkgdir}/{etc,sbin,usr/{bin,sbin,share},var}
 
-  # We need one 32 bit specific header file
-  find ${pkgdir}/usr/include -type f -not -name stubs-32.h -delete
+  # We need to keep 32 bit specific header files
+  find ${pkgdir}/usr/include -type f -not -name '*-32.h' -delete
 
 
   # Dynamic linker
@@ -123,6 +128,9 @@ package() {
   # in addition libcrypt appears widely required
   rm $pkgdir/usr/lib32/lib{anl,BrokenLocale,nsl,resolv,rt,util}.a
 
+
+
+
   # Do not strip the following files for improved debugging support
   # ("improved" as in not breaking gdb and valgrind...):
   #   ld-${pkgver}.so
@@ -137,11 +145,16 @@ package() {
                         usr/lib32/getconf/*
 
 
+
+
   strip $STRIP_STATIC usr/lib32/*.a
 
-  strip $STRIP_SHARED usr/lib32/{libanl,libBrokenLocale,libcidn,libcrypt}-*.so \
+  strip $STRIP_SHARED usr/lib32/lib{anl,BrokenLocale,cidn,crypt}-*.so \
                       usr/lib32/libnss_{compat,db,dns,files,hesiod,nis,nisplus}-*.so \
-                      usr/lib32/{libdl,libm,libnsl,libresolv,librt,libutil}-*.so \
-                      usr/lib32/{libmemusage,libpcprofile,libSegFault}.so \
-                      usr/lib32/{audit,gconv}/*.so
+                      usr/lib32/lib{dl,m,nsl,resolv,rt,util}-*.so \
+                      usr/lib32/lib{memusage,pcprofile,SegFault}.so \
+                      usr/lib32/{audit,gconv}/*.so || true
+
+
+
 }
