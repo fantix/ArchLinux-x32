@@ -58,10 +58,12 @@ build() {
     gcc_home=`ls -d /opt/gcc-x32-seed/lib/gcc/x86_64-unknown-linux-gnu/*/`
     export CC="/opt/gcc-x32-seed/bin/gcc -mx32 -B"${gcc_home}
     export CXX="/opt/gcc-x32-seed/bin/g++ -mx32 -B"${gcc_home}
+    seed_params='--target=x86_64-x32-linux --build=x86_64-linux --host=x86_64-x32-linux'
   else
     echo "Using gcc-multilib-x32"
     export CC="gcc -mx32"
     export CXX="g++ -mx32"
+    seed_params=''
   fi
   echo "slibdir=/usr/libx32" >> configparms
   echo "rtlddir=/usr/libx32" >> configparms
@@ -84,8 +86,8 @@ build() {
       --enable-lock-elision \
       --enable-multi-arch \
       --disable-werror \
+      ${seed_params} \
       x86_64-unknown-linux-gnux32
-      #--target=x86_64-x32-linux --build=x86_64-linux --host=x86_64-x32-linux \
 
   # build libraries with hardening disabled
   echo "build-programs=no" >> configparms
